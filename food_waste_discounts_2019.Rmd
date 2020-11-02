@@ -28,7 +28,14 @@ Entering in 2019 Food waste data
 item_discounts_2019 <- read_csv("item_discoun_food_waste_2019.csv") %>% 
   clean_names() %>%  
   select(item, quantity, reason, amount) %>% 
-  filter(reason != "Staff" & reason!= "Brianne")
+  group_by(item) %>% 
+  filter(grepl('% off', reason))
 
+```
+
+```{r}
+discount_totals <- item_discounts_2019 %>% 
+  summarise(quantity = sum(quantity), 
+            cost = sum(amount))
 ```
 
