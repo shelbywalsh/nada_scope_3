@@ -12,7 +12,7 @@ library(tidyverse)
 library(tidyr)
 library(janitor)
 library(kableExtra)
-library(car)
+#library(car) # this package is apparently my computer's sworn nemesis
 library(devtools)
 library(broom)
 library(ggpubr)
@@ -22,39 +22,64 @@ library(effsize)
 library(stargazer)
 ```
 
+
+1. Read in the data
 ```{r}
 meta_data_2019 <- read_csv("2019_vendor_invoice.csv") %>% 
   clean_names()
 ```
 
+2. Sort out irrevelant columns and drop NAs for item.
 ```{r}
 clean_2019_data <- meta_data_2019 %>% 
-  select(vendor, receipt_id, item, unit, date, cost_unit, total_quantity, total_cost) %>% 
-  drop_na(item) 
+  select(purchase_order, vendor, receipt_id, item, unit, date, cost_unit, total_quantity, total_cost)
+
+line_items <- clean_2019_data %>% 
+  drop_na(item) # The are the "line items" for each order
+# We lost 3836 rows
 ```
 
+3.To group suppliers by spend, and select the top suppliers:
 ```{r}
-spend_grouping <- clean_2019_data %>% 
+spend_grouping <- line_items  %>% 
   group_by(vendor) %>% 
   summarise(cost = sum(total_cost)) %>% 
   arrange(-cost) %>% 
   head(29)
+# #29 is top 80%
 ```
 
+4. Now, let's take a look at what the most important items are.
 ```{r}
-spend_total <- clean_2019_data %>% 
-  summarise(sum(total_cost))
-```
-
-```{r}
-item_grouping <- clean_2019_data %>% 
+item_grouping <- line_items  %>% 
   group_by(item) %>% 
   summarise(quantity = sum(total_quantity), 
             cost = sum(total_cost))
 ```
 
-# ```{r}
-product_category <- item_grouping %>% 
-  str_detect(item,"Almond")
-#```
+5. The next step is sorting products into basic categories
 
+So, first product category: Eggs.
+```{r}
+# Eggs
+dairy_product_category <- item_grouping %>% 
+ filter(grepl('milk|Milk|Cream|cream', item))
+
+```
+
+
+```{r}
+#I'm going to start by looking at items that include "milk", "Milk", "Cream", or "cream"
+poultry_egg_product_category <- item_grouping %>% 
+ filter(grepl('milk|Milk|Cream|cream', item))
+
+# The problem, of course, is that many of these are plant-based and don't deserve to be grouped in with dairy. Fear not, we will deal with this later. For now, though, I'm more interested in getting all these categories filled out.
+```
+
+Second product category, why not grains? 
+```{r}
+grains_product_category <- item_grouping %>% 
+ filter(grepl('milk|Milk|Cream|cream', item))
+```
+
+%>
