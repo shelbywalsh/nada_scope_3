@@ -39,3 +39,9 @@ discount_totals <- item_discounts_2019 %>%
             cost = sum(amount))
 ```
 
+first category: dairy
+```{r}
+dairy_product_category <- discount_totals %>% 
+  filter(grepl('milk|Milk|Cream|cream', item))
+```
+
