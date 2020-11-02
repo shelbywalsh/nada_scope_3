@@ -25,33 +25,34 @@ library(stargazer)
 
 1. Read in the data
 ```{r}
-meta_data_2019 <- read_csv("2019_vendor_invoice.csv") %>% 
+all_data <- read_csv("2019_vendor_invoice.csv") %>% 
   clean_names()
 ```
 
 2. Sort out irrevelant columns and drop NAs for item.
 ```{r}
-clean_2019_data <- meta_data_2019 %>% 
+all_data <- all_data %>% 
   select(purchase_order, vendor, receipt_id, item, unit, date, cost_unit, total_quantity, total_cost)
 
-line_items <- clean_2019_data %>% 
+all_data <- all_data %>% 
   drop_na(item) # The are the "line items" for each order
 # We lost 3836 rows
 ```
 
-3.To group suppliers by spend, and select the top suppliers:
+3.Group suppliers by spend, and select the top suppliers:
 ```{r}
-spend_grouping <- line_items  %>% 
+spend_grouping <- all_data  %>% 
   group_by(vendor) %>% 
   summarise(cost = sum(total_cost)) %>% 
   arrange(-cost) %>% 
   head(29)
 # #29 is top 80%
+# This is not relevant to what we decided to do.
 ```
 
-4. Now, let's take a look at what the most important items are.
+4. Group products and calculate total spend.
 ```{r}
-item_grouping <- line_items  %>% 
+all_products <- all_data  %>% 
   group_by(item) %>% 
   summarise(quantity = sum(total_quantity), 
             cost = sum(total_cost))
@@ -59,24 +60,36 @@ item_grouping <- line_items  %>%
 
 5. The next step is sorting products into basic categories
 
-So, first product category: Eggs.
+(1) So, first product category: Eggs.
 ```{r}
 # Eggs
-dairy_product_category <- item_grouping %>% 
- filter(grepl('milk|Milk|Cream|cream', item))
+eggs_category_1 <- all_products %>% 
+ filter(grepl('Eggs|eggs', item))
 
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Eggs|eggs', all_products$item),]
+
+# Give Eggs the Product Category Code 1
+eggs_category_1 <- eggs_category_1 %>%
+  add_column(prod_cat = 1)
 ```
 
 
+(2) Cheese
 ```{r}
-#I'm going to start by looking at items that include "milk", "Milk", "Cream", or "cream"
-poultry_egg_product_category <- item_grouping %>% 
- filter(grepl('milk|Milk|Cream|cream', item))
+# Cheese
+cheese_category_2 <- all_products %>% 
+ filter(grepl('cheese,|Cheese,', item))
 
-# The problem, of course, is that many of these are plant-based and don't deserve to be grouped in with dairy. Fear not, we will deal with this later. For now, though, I'm more interested in getting all these categories filled out.
+# Subtract those words from all_products
+all_products <- all_products[!grepl('cheese|Cheese', all_products$item),]
+
+# Give Eggs the Product Category Code 1
+cheese_category_2 <- cheese_category_2 %>%
+  add_column(prod_cat = 2)
 ```
 
-Second product category, why not grains? 
+(3)
 ```{r}
 grains_product_category <- item_grouping %>% 
  filter(grepl('milk|Milk|Cream|cream', item))
