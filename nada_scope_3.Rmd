@@ -52,24 +52,25 @@ spend_grouping <- all_data  %>%
 
 4. Group products and calculate total spend.
 ```{r}
+# ** Note: When making changes, return to this link and run all code chunks below to be sure that everything is sorted correctly
 all_products <- all_data  %>% 
   group_by(item) %>% 
   summarise(quantity = sum(total_quantity), 
             cost = sum(total_cost))
 ```
 
-5. The next step is sorting products into basic categories
+5. The next step is sorting products into CEDA-related categories
 
-(1) So, first product category: Eggs.
+(1) Eggs
 ```{r}
-# Eggs
+# Eggs (Did not find any poultry in 2019 records)
 eggs_category_1 <- all_products %>% 
  filter(grepl('Eggs|eggs', item))
 
 # Subtract those words from all_products
 all_products <- all_products[!grepl('Eggs|eggs', all_products$item),]
 
-# Give Eggs the Product Category Code 1
+# Product Category Code
 eggs_category_1 <- eggs_category_1 %>%
   add_column(prod_cat = 1)
 ```
@@ -77,22 +78,85 @@ eggs_category_1 <- eggs_category_1 %>%
 
 (2) Cheese
 ```{r}
-# Cheese
+# Cheese (Appears to be named "Cheese,...")
 cheese_category_2 <- all_products %>% 
  filter(grepl('cheese,|Cheese,', item))
 
 # Subtract those words from all_products
-all_products <- all_products[!grepl('cheese|Cheese', all_products$item),]
+all_products <- all_products[!grepl('cheese,|Cheese,', all_products$item),]
 
-# Give Eggs the Product Category Code 1
+# Product Category Code
 cheese_category_2 <- cheese_category_2 %>%
   add_column(prod_cat = 2)
 ```
 
-(3)
+(3) Meat (except poultry)
 ```{r}
-grains_product_category <- item_grouping %>% 
- filter(grepl('milk|Milk|Cream|cream', item))
+# Basically just what they get from Two Rivers Speciality Meats
+meats_category_3 <- all_products %>% 
+ filter(grepl('Pepperoni|Bratwurst|Sausage|Chorizo|Jerky', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Pepperoni|Bratwurst|Sausage|Chorizo|Jerky', all_products$item),]
+
+# Product Category Code
+meats_category_3 <- meats_category_3  %>%
+  add_column(prod_cat = 3)
 ```
 
-%>
+(4) Fabrics
+```{r}
+# These are all made of fabric, primarily cotton
+fabrics_category_4 <- all_products %>% 
+ filter(grepl('Fabric|Filter|Bag |Bag,|Wrap', item))
+# Note "bag" variations to exclude "baguette"
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Fabric|Filter|Bag |Bag,|Wrap', all_products$item),]
+
+# Product Category Code
+fabrics_category_4 <- fabrics_category_4  %>%
+  add_column(prod_cat = 4)
+
+# ** NOTE - some of these are upcycled fabric!
+```
+
+(5) Flours
+```{r}
+# Flours and flour mixes
+flours_category_5 <- all_products %>% 
+ filter(grepl('Flour,|Flour |Pancake', item))
+# Note "flour" variation exclude "flourgirl"
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Fabric|Filter|Bag |Bag,|Wrap', all_products$item),]
+
+# Product Category Code
+flours_category_5 <- flours_category_5  %>%
+  add_column(prod_cat = 5)
+```
+
+(6) Breads
+```{r}
+# Basically just what they get from Two Rivers Speciality Meats
+breads_category_6 <- all_products %>% 
+ filter(grepl('Bread|Hamburger|Crouton|Loaf', item))
+# Hamburger retrieves "hamburger bun" without messing with anything sold by the bunch
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Pepperoni|Bratwurst|Sausage|Chorizo', all_products$item),]
+
+# Product Category Code
+breads_category_6 <- breads_category_6   %>%
+  add_column(prod_cat = 6)
+```
+
+(7) Cookie, cracker, pasta, and tortilla
+```{r}
+ccpt_category_7 <- all_products %>% 
+ filter(grepl('Cookie|Macaron|Sinnabon|Crisp|Cracker|Tortilla', item))
+
+# "Macaron" works for macaron and macaroni
+# I put cookies in here because I 
+```
+
