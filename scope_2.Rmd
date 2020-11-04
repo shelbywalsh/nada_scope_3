@@ -24,6 +24,7 @@ library(stargazer)
 
 1. Read in Data
 ```{r}
-scope_2_data <-read_csv("")
+scope_2_data <-read_csv("scope_2_calculations3.csv") %>% 
+  clean_names()
 ```
 
