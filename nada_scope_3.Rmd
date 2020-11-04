@@ -23,13 +23,13 @@ library(stargazer)
 ```
 
 
-1. Read in the data
+# 1. Read in the data
 ```{r}
 all_data <- read_csv("2019_vendor_invoice.csv") %>% 
   clean_names()
 ```
 
-2. Sort out irrevelant columns and drop NAs for item.
+# 2. Sort out irrevelant columns and drop NAs for item.
 ```{r}
 all_data <- all_data %>% 
   select(purchase_order, vendor, receipt_id, item, unit, date, cost_unit, total_quantity, total_cost)
@@ -37,9 +37,10 @@ all_data <- all_data %>%
 all_data <- all_data %>% 
   drop_na(item) # The are the "line items" for each order
 # We lost 3836 rows
+# This is what we can come back to compare to, because now I'll start slowly eliminating products and adding them into categorized data sets.
 ```
 
-3.Group suppliers by spend, and select the top suppliers:
+# 3.Group suppliers by spend, and select the top suppliers:
 ```{r}
 spend_grouping <- all_data  %>% 
   group_by(vendor) %>% 
@@ -50,18 +51,21 @@ spend_grouping <- all_data  %>%
 # This is not relevant to what we decided to do.
 ```
 
-4. Group products and calculate total spend.
+# 4. Group products and calculate total spend.
 ```{r}
-# ** Note: When making changes, return to this link and run all code chunks below to be sure that everything is sorted correctly
 all_products <- all_data  %>% 
   group_by(item) %>% 
   summarise(quantity = sum(total_quantity), 
             cost = sum(total_cost))
 ```
 
-5. The next step is sorting products into CEDA-related categories
+# 5. The next step is sorting products into CEDA-related categories*
 
-(1) Eggs
+* When making changes, be sure to re-run all code chunks above to avoid sorting errors. (Ctrl+Alt+P)
+** CEDA categories described here: https://docs.google.com/spreadsheets/d/1O_1TdRUn4D5utKODiZOS0G7OFIE8OhBaj53buOkoktc/edit#gid=0
+
+
+(1) Egg Production
 ```{r}
 # Eggs (Did not find any poultry in 2019 records)
 eggs_category_1 <- all_products %>% 
@@ -75,15 +79,15 @@ eggs_category_1 <- eggs_category_1 %>%
   add_column(prod_cat = 1)
 ```
 
-
-(2) Cheese
+(2) Cheese manufacturing
 ```{r}
-# Cheese (Appears to be named "Cheese,...")
+# Cheese
 cheese_category_2 <- all_products %>% 
- filter(grepl('cheese,|Cheese,', item))
+ filter(grepl('Cheese,|Charmisan|Cream Cheese|Feta', item))
+# Questionable whether cream cheese belongs here
 
 # Subtract those words from all_products
-all_products <- all_products[!grepl('cheese,|Cheese,', all_products$item),]
+all_products <- all_products[!grepl('Cheese,|Charmisan|Cream Cheese|Feta', all_products$item),]
 
 # Product Category Code
 cheese_category_2 <- cheese_category_2 %>%
@@ -92,9 +96,10 @@ cheese_category_2 <- cheese_category_2 %>%
 
 (3) Meat (except poultry)
 ```{r}
-# Basically just what they get from Two Rivers Speciality Meats
 meats_category_3 <- all_products %>% 
  filter(grepl('Pepperoni|Bratwurst|Sausage|Chorizo|Jerky', item))
+# Basically just what they get from Two Rivers Speciality Meats*
+# * See note in CEDA database - Two Rivers is not just a processing facility, but a ranch as well
 
 # Subtract those words from all_products
 all_products <- all_products[!grepl('Pepperoni|Bratwurst|Sausage|Chorizo|Jerky', all_products$item),]
@@ -104,59 +109,168 @@ meats_category_3 <- meats_category_3  %>%
   add_column(prod_cat = 3)
 ```
 
-(4) Fabrics
+(13) Repurposed and Upcycled Materials
 ```{r}
-# These are all made of fabric, primarily cotton
+scrap_category_13 <- all_products %>% 
+ filter(grepl('Mill Factor', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Mill Factor', all_products$item),]
+
+# Product Category Code
+scrap_category_13  <- scrap_category_13   %>%
+  add_column(prod_cat = 13)
+```
+
+(4) Fabric products
+```{r}
 fabrics_category_4 <- all_products %>% 
- filter(grepl('Fabric|Filter|Bag |Bag,|Wrap', item))
+ filter(grepl('Fabric|Filter|Bag |Bag,|Wrap|Dryer|cloth|Cloth|Pads|Jersey,', item))
 # Note "bag" variations to exclude "baguette"
 
 # Subtract those words from all_products
-all_products <- all_products[!grepl('Fabric|Filter|Bag |Bag,|Wrap', all_products$item),]
+all_products <- all_products[!grepl('Fabric|Filter|Bag |Bag,|Wrap|Cloth|cloth|Pads,', all_products$item),]
 
 # Product Category Code
 fabrics_category_4 <- fabrics_category_4  %>%
   add_column(prod_cat = 4)
-
-# ** NOTE - some of these are upcycled fabric!
 ```
 
-(5) Flours
+(5) Flours & flour mixes
 ```{r}
 # Flours and flour mixes
 flours_category_5 <- all_products %>% 
  filter(grepl('Flour,|Flour |Pancake', item))
-# Note "flour" variation exclude "flourgirl"
+# Note "Flour" variations exclude "Flourgirl"
 
 # Subtract those words from all_products
-all_products <- all_products[!grepl('Fabric|Filter|Bag |Bag,|Wrap', all_products$item),]
+all_products <- all_products[!grepl('Flour,|Flour |Pancake', all_products$item),]
 
 # Product Category Code
-flours_category_5 <- flours_category_5  %>%
+flours_category_5 <- flours_category_5 %>%
   add_column(prod_cat = 5)
 ```
 
-(6) Breads
+(6) Bread and bakery products
 ```{r}
 # Basically just what they get from Two Rivers Speciality Meats
 breads_category_6 <- all_products %>% 
  filter(grepl('Bread|Hamburger|Crouton|Loaf', item))
 # Hamburger retrieves "hamburger bun" without messing with anything sold by the bunch
+# Note that the next category includes cookies and crackers. This one is just breads.
 
 # Subtract those words from all_products
 all_products <- all_products[!grepl('Pepperoni|Bratwurst|Sausage|Chorizo', all_products$item),]
 
 # Product Category Code
-breads_category_6 <- breads_category_6   %>%
+breads_category_6 <- breads_category_6  %>%
   add_column(prod_cat = 6)
 ```
 
 (7) Cookie, cracker, pasta, and tortilla
 ```{r}
-ccpt_category_7 <- all_products %>% 
- filter(grepl('Cookie|Macaron|Sinnabon|Crisp|Cracker|Tortilla', item))
-
+cookie_category_7 <- all_products %>% 
+ filter(grepl('Cookie|Macaron|Sinnabon|Muffin|Dough|Bakeshop|Cricket|Powerball|Crisp|Cracker|Tortilla|Pasta|Noodle|Rotini|Penne|Creste|Fettuccine', item))
 # "Macaron" works for macaron and macaroni
-# I put cookies in here because I 
+# The ramen noodle package is JUST noodles (no seasoning)
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Cookie|Macaron|Sinnabon|Muffin|Dough|Bakeshop|Cricket|Powerball|Crisp|Cracker|Tortilla|Pasta|Noodle|Rotini|Penne|Creste|Fettuccine', all_products$item),]
+
+# Product Category Code
+cookie_category_7  <- cookie_category_7 %>%
+  add_column(prod_cat = 7)
+```
+
+(8) Sugar and confectionery product manufacturing
+```{r}
+sugar_category_8 <- all_products %>% 
+ filter(grepl('Sugar,', item))
+# Cocounut sugar popped up here too
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Sugar,', all_products$item),]
+
+# Product Category Code
+sugar_category_8  <- sugar_category_8 %>%
+  add_column(prod_cat = 8)
+```
+
+(9) Coffee and tea manufacturing
+```{r}
+coffee_category_9 <- all_products %>% 
+ filter(grepl('Coffee|Tea,', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Coffee|Tea,', all_products$item),]
+
+# Product Category Code
+coffee_category_9   <- coffee_category_9 %>%
+  add_column(prod_cat = 9)
+```
+
+(10) Fruit and vegetable canning, pickling, and drying
+```{r}
+dried_category_10 <- all_products %>% 
+ filter(grepl('Dried|Raisins|Goji Berries,|Apple Rings|Figs|Pickle|Kimchi|Sauerkraut|Olives|Ginger Carrots|Mostarda', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Dried|Raisins|Goji Berries,|Apple Rings|Figs|Pickle|Kimchi|Olives|Ginger Carrots|Mostarda', all_products$item),]
+
+# Product Category Code
+dried_category_10   <- dried_category_10 %>%
+  add_column(prod_cat = 10)
+```
+
+(11) Fats and oils refining and blending
+```{r}
+oils_category_11 <- all_products %>% 
+ filter(grepl('Oil', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Oil', all_products$item),]
+
+# Product Category Code
+oils_category_11   <- oils_category_11 %>%
+  add_column(prod_cat = 11)
+```
+
+(12) Ice cream and frozen dessert manufacturing
+```{r}
+icecream_category_12 <- all_products %>% 
+ filter(grepl('Ice Cream', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Ice Cream', all_products$item),]
+
+# Product Category Code
+icecream_category_12   <- icecream_category_12 %>%
+  add_column(prod_cat = 12)
+```
+
+(13) Flavoring Syrup and Concentrates
+```{r}
+syrup_category_13 <- all_products %>% 
+ filter(grepl('Syrup|Concen', item))
+
+```
+
+Tempea - Chickpea, Lentil
+Peanut
+
+Tree nut Cocominos
+
+() Soybean and other oilseed processing
+
+```{r}
+oilseed_category_13 <- all_products %>% 
+ filter(grepl('Soy|Tofu', item))
+# Oilseeds include
+
+```
+
+```{r}
+test_df <- all_data %>% 
+  filter(grepl('Jersey', item))
 ```
 

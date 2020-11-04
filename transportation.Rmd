@@ -9,3 +9,40 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(tidyverse)
+library(tidyr)
+library(janitor)
+library(kableExtra)
+library(car)
+library(devtools)
+library(broom)
+library(ggpubr)
+library(ggbeeswarm)
+library(RColorBrewer)
+library(effsize)
+library(stargazer)
+```
+```{r}
+all_data <- read_csv("2019_vendor_invoice.csv") %>% 
+  clean_names()
+```
+
+```{r}
+distance <- all_data %>% 
+  filter(grepl('Left Coast Naturals', vendor)) %>% 
+  add_column(distance_km = 14)
+
+         
+      
+  
+```
+eggs_category_1 <- all_products %>% 
+ filter(grepl('Eggs|eggs', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Eggs|eggs', all_products$item),]
+
+# Give Eggs the Product Category Code 1
+eggs_category_1 <- eggs_category_1 %>%
+  add_column(prod_cat = 1)

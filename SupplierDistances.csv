@@ -1,0 +1,174 @@
+﻿ID,Vendor name,Address line 1,Address  used for distance calculation (Google Maps),City,Country,State,Zip code,Distance to Nada (1 Way) (km),Distance to Nada 2 ways (km)
+1,Alisa Yao Designs,404-2520 Manitoba St,"2520 Manitoba St, Vancouver, BC V5Y3A6",Vancouver,CAN,BC,V5Y 3A6,1.3,2.6
+2,Amoda Tea & Wellness Inc.,25-11151 horseshoe way,"Amoda Tea & Wellness, 1664 Renfrew St, Vancouver, BC V5K 4E1, Canada",Richmond,CAN,BC,V7A4S5,4.4,8.8
+3,Ranger Tea Crafters,PO Box 1044,"Whistler, British Columbia",Whistler,CAN,BC,V0N 1B0,125,250
+4,Organic Matters,P.O.Box 1221,"Organic Matters | Om Foods Inc, 3505 BC-6, Nelson, BC V1L 1Z4, Canada",Nelson,CAN,BC,V1L 6H3,658,1316
+5,Discovery Organics,880 Malkin Ave.,"880 Malkin Ave, Vancouver, BC V6A 2K6, Canada",Vancouver,CAN,BC,V6A 2K6,3.3,6.6
+6,Moonbrew Tonic Co.,833 Keefer Street,,Vancouver,CAN,BC,V6A 1Y8,,0
+7,Product of Science & Art,,,,CAN,BC,,,0
+8,Lakehouse Foods,3139 St. Catherine's Street,,Vancouver,CAN,BC,V5T 3Z3,,0
+9,Dickie's Ginger,1380 Napier St.,"1380 Napier St, Vancouver, BC V5L 2P6, Canada",Vancouver,CAN,BC,V5L 2P6,2.6,5.2
+10,East Van Roasters,319 Carrall Street,"319 Carrall St, Vancouver, BC V6B 2J4, Canada",Vancouver,CAN,BC,V6B 2J4,3.2,6.4
+11,Denman Island Chocolate,4321 Denman Rd.,"4321 Denman Rd, Denman Island, BC V0R 1T0, Canada",Denman Island,CAN,BC,V0R 1T0,172,344
+12,Left Coast Naturals,,"4612 Dawson Street, Burnaby, BC V5C 4C3, Canada",,CAN,BC,,7,14
+13,Gathering Place Trading Company,PO Box 272,"Whaletown, British Columbia V0P 1Z0, Canada",Whaletown,CAN,BC,V0P 1Z0,264,528
+14,Coast Protein Inc.,110 - 131 11th Street,,New Westminster,CAN,BC,V3M 4C7,,0
+15,Abeego Wraps,303 2614 Bridge St.,"Bridge St, North Vancouver, BC, Canada",Victoria,CAN,BC,V8T 4S9,10.6,21.2
+16,Oneka Elements,23 Rue Principale,"23 Rue Principale, Frelighsburg, QC, Canada",Frelighsburg,CAN,QC,J0J 1C0,4653,9306
+17,Dental Lace Inc.,5 Waumbek Road,"5 Waumbek Rd, Cape Elizabeth, ME 04107",Cape Elizabeth,USA,ME,4107,5284,10568
+18,Legends Haul,102 Forester St,"102 Forester St, North Vancouver, BC, Canada",North Vancouver,CAN,BC,V7H 1W7,10.6,21.2
+19,Horizon Distributors,5589 Trapp Ave.,"5589 Trapp Ave, Burnaby, BC V3N 2V4, Canada",Burnaby,CAN,BC,V3N 0B2,14.7,29.4
+20,Bakers Supply House,102-19495 55th Ave.,"102 E 55th Ave, Vancouver, BC, Canada",Vancouver,CAN,BC,V5X 1M8,6,12
+21,Hives for Humanity,580 Powell Street,"580 Powell St, Vancouver, BC V6A 3C4, Canada",Vancouver,CAN,BC,V6A 1G9,4.5,9
+22,Nellie's All-Natural,#114-2455 Dollarton Hwy,"114-2455 Dollarton Hwy, North Vancouver, BC V7H 0A2, Canada",North Vancouver,CAN,BC,V7H OA2,10.6,21.2
+23,Plenty + Spare,2168 East Hastings Street,"2168 E Hastings St, Vancouver, BC V5L 1V1, Canada",Vancouver,CAN,BC,V5L 1V1,4.4,8.8
+24,Onyx,3814 Oxford Street,"3814 Oxford St, Burnaby, BC V5C 1C3, Canada",Burnaby,CAN,BC,V5C 1C3,7.6,15.2
+25,Two Blooms,1716 Carnegie Cres.,,Victoria,CAN,BC,V8N 1P3,,0
+26,Teecycle,#48 - 550 Browning Pl.,"550 Browning Pl Unit 48, North Vancouver, BC V7H 3A9, Canada",North Vancouver,CAN,BC,V7H 3A9,11.9,23.8
+27,Cedar Isle Farm,3270 Chaplin Rd.,"3270 Chaplin Rd, Agassiz, BC V0M 1A2, Canada",Agassiz,CAN,BC,V0M 1A2,124,248
+28,Brush Naked,2784 Bath Street,"2784 Bath St, Kelowna, BC V1Y 1M5, Canada",Kelowna,CAN,BC,V1Y 1M5,388,776
+29,Artisan Bake Shoppe,,"1472 Crown St, North Vancouver, BC V7J 1G5, Canada",,CAN,BC,,10.7,21.4
+30,BobAli Foods,301/1855 E Georgia St,"1855 E Georgia St, Vancouver, BC V5L 2B5, Canada",Vancouver,CAN,BC,V5L 2B5,3.8,7.6
+31,Earnest Ice Cream,1485 Frances St.,"1485 Frances St, Vancouver, BC V5L 1Z1, Canada",Vancouver,CAN,BC,V5L 1Z1,3.2,6.4
+32,Fairware,,"178 W 3rd Ave, Vancouver, BC V5Y 1E9, Canada",,CAN,BC,,2,4
+33,The Farm House Natural Cheeses,5634 McCallum Rd.,,Agassiz,CAN,BC,V0M 1A3,,0
+34,Foothills Creamery Ltd.,2825 Bonnybrook Rd SE.,"2825 Bonnybrook Rd SE, Calgary, AB T2G 4N1, Canada",Calgary,CAN,AB,T2G 4N1,973,1946
+35,Fortify Natural Wellness,,,,CAN,BC,,,0
+36,Giddy Yo,9-75 First St.,"9 First St, Orangeville, ON L9W 1E1, Canada",Orangeville,CAN,ON,L9W 5B6,4189,8378
+37,GLOW Chocolates,507 - 4425 Halifax St.,"4425 Halifax St, Burnaby, BC V5C 6P2, Canada",Burnaby,CAN,BC,V5C 6P2,6.9,13.8
+38,gogoBags,PO. BOX 63516 89-935 Marine Dr.,,North Vancouver,CAN,BC,V7P 1S3,,0
+39,Home Grown Living Foods,PO Box 737,"Evergreen Place, 20 S Shore Rd, Lake Cowichan, BC V0R 2G0, Canada",Lake Cowichan,CAN,BC,V0R 2G0,121,242
+40,Hoochy ‘Booch Kombucha,400 Industrial Ave.,"400 Industrial Ave, Vancouver, BC V6A 2P3, Canada",Vancouver,CAN,BC,V6A 2P3,2,4
+41,Jiva Organics,7442 Fraser Park Drive,"7442 Fraser Park Dr, Burnaby, BC V5J 5B9, Canada",Burnaby,CAN,BC,V5J 5B9,12.9,25.8
+42,KAPOW NOW!,#338-2055 Commercial Dr.,,Vancouver,CAN,BC,V5N 0C7,,0
+43,Klippers Organics,2200 Ferko Rd,"2200 Ferko Rd, Cawston, BC V0X 1C2, Canada",Cawston,CAN,BC,V0X 1C2,352,704
+44,Life Without Plastic,,"835 Commerce Park Dr, Ogdensburg, NY 13669",,CAN,BC,,4726,9452
+45,Lita's Mexican Foods,"3788 Norfolk Street, Unit 101","101 Norfolk St, Burnaby, BC V5G 1E4, Canada",Burnaby,CAN,BC,V5G 0B5,7.1,14.2
+46,LFT Group Brands Ltd.,344-255 Newport Drive,"255 Newport Dr #344, Port Moody, BC V3H 5H1, Canada",Port Moody,CAN,BC,V3H 5H1,24.1,48.2
+47,Living Lotus Food & Nutrition Inc.,#204-2511 Quebec St.,,Vancouver,CAN,BC,V5T 0B6,,0
+48,Aisle (Lunapads),3433 Commercial Street,"3433 Commercial St, Vancouver, BC V5N 4E8, Canada",Vancouver,CAN,BC,V5N 4E8,2.6,5.2
+49,Naked Coconuts,816 - 207 West Hastings St.,"207 W Hastings St #816, Vancouver, BC V6B 2N4, Canada",Vancouver,CAN,BC,V6B 1H7,3.7,7.4
+50,Nature Derived Organics,,"Port Moody, BC",,CAN,BC,,19.3,38.6
+51,Nina's Pierogi,,"19705 56 Ave #105, Langley City, BC V3A 3X7, Canada",,CAN,BC,,41.5,83
+52,Nora's Non-Dairy Ltd.,306 - 2191 West 1st Ave.,,Vancouver,CAN,BC,V6K 1E7,,0
+53,Nuez Beverage Co.,153 W 7th Ave.,,Vancouver,CAN,BC,V5Y 1L8,,0
+54,Orazio's Olive Oil,# 200 1455 Bellevue Ave.,,West Vancouver,CAN,BC,V7T 1C3,,0
+55,Pocket Rag,402 Cook St.,"402 Cook St, Victoria, BC V8V 3Y1, Canada",Victoria,CAN,BC,V8V 3Y1,113,226
+56,Pure Earth Superfoods,153 W 7th Ave.,"153 W 7th Ave, Vancouver, BC V5Y 1L8, Canada",Vancouver,CAN,BC,V5Y 1L8,1.5,3
+57,Rehoboth Farm,,"4123 Eckert St, Chilliwack, BC V2R 5J6, Canada",,CAN,BC,,89.3,178.6
+58,Roasters Hot Sauce,507-1288 West Cordova St.,"507 W Cordova St, Vancouver, BC, Canada",Vancouver,CAN,BC,V6C 3R3,4,8
+59,Spread'Em Kitchen Co.,"3607 Commercial St, Apt 7","3607 Commercial St, Vancouver, BC V5N 4G1, Canada",Vancouver,CAN,BC,V5N 4G1,2.8,5.6
+60,Triple Jim's,47420 Chilliwack Central Rd,,Chilliwack,CAN,BC,V2P 6H3,,0
+61,ULAT Dryer Balls,453 Church Road,"453 Church Rd, Parksville, BC V9P 2B2, Canada",Parksville,CAN,BC,V9P 2B2,130,260
+62,Van Rice Products Ltd,8 - 1350 Valmont Way,,Richmond,CAN,BC,V6V 1Y4,,0
+63,Vancouver Island Salt Co.,Box 7 Black Creek Stn Main,,Black Creek,CAN,BC,V9J 1K8,,0
+64,The Workshop Vegetarian Cafe,296 Pemberton Ave.,"296 Pemberton Ave, North Vancouver, BC V7P 2R4, Canada",North Vancouver,CAN,BC,V7P 2R5,11.9,23.8
+65,Yoggu!,1640 East Kent Ave. S,"1640 East Kent Ave S, Vancouver, BC V5P 2S7, Canada",Vancouver,CAN,BC,V5P 2S7,7.4,14.8
+66,Zimt Chocolates,6992 Russell Ave.,"6992 Russell Ave, Burnaby, BC V5J 4R9, Canada",Burnaby,CAN,BC,V5J 4R9,12.9,25.8
+67,To Live For Fine Foods,,,,CAN,BC,,,0
+68,ULINE,3333 James Snow Pkwy N,"3333 James Snow Pkwy N, Milton, ON L9T 8L1, Canada",Milton,Canada,ON,L9T 8L1,4155,8310
+69,The Mill Factor,,,,USA,,,,0
+70,Dans Le Sac,88 Saint-Jacques,,Longueuil QC,Canada,Quebec,J4H 3B6,,0
+71,Kush Bottles,,,,USA,,,,0
+72,Chopvalue,"114, 618 East Kent Ave S","618 East Kent Ave S, Vancouver, BC V5X 0B1, Canada",Vancouver,Canada,BC,V5X 0B1,6.8,13.6
+73,Brush Naked,,"2784 Bath St, Kelowna, BC V1Y 1M5, Canada",,USA,,,388,776
+74,Nelson Naturals,,"Nelson, British Columbia, Canada",,USA,,,656,1312
+75,Two Blooms,,,,USA,,,,0
+76,MiiR,,"3400 Stone Way N, Seattle, WA 98103",,USA,,,223,446
+77,Kaylin & Hobbs,,,,USA,,,,0
+78,Yummy Foods,,,,Canada,,,,0
+79,Richard's Packaging,140-9200 Van Horne Way,,Richmond,Canada,British Columbia,V6X 1W3,,0
+80,Dom's Naturals,176 Cormorant Crescent,"176 Cormorant Crescent, Salt Spring Island, BC V8K 1G8, Canada",Saltspring Island,Canada,BC,V8K 1G8,77.6,155.2
+81,Westpoint Naturals,600 - 625 West Kent Ave. N,"600-665 W Kent Ave N, Vancouver, BC V6P 6T7, Canada",Vancouver,Canada,BC,V6P 6T7,8.7,17.4
+82,GlassSipper,,"Vancouver, British Columbia, Canada",Vancouver,Canada,BC,,4.4,8.8
+83,Caboo Paper Products Inc.,,"Westcoast Building Maintenance, 2323 Boundary Rd #112, Vancouver, BC V5M 4V8, Canada",,USA,,,5.6,11.2
+85,Blume Supply Inc.,1307-1351 Continental St.,"1307 Continental St, Vancouver, BC V6Z 1R6, Canada",Vancouver,Canada,BC,V6Z 0C6,4.5,9
+86,Bite Snacks,,Kits Point BC,,USA,,,5.7,11.4
+87,Kooshoo,,,,USA,,,,0
+88,Beyond Bread,,,,USA,,,,0
+89,Terra Breads,,,,,,,,
+90,Wize Monkey,,,,,,,,
+91,Coze Design,111-2050 Scotia Street,,Vancouver,Canada,BC,V5T4T1,,
+92,Wine Crush Market BC Ltd.,283 Brunswick Street,,Penticton,Canada,BC,V2A5P9,,
+93,The Farmhouse Bard,,,Surrey,Canada,BC,,,
+94,Holy Homous,,,Vancouver,BC,,,,
+95,Klippers Organics,2200 Ferko Road,"2200 Ferko Rd, Cawston, BC V0X 1C2, Canada",Cawston,Canada,BC,V0X 1C2,354,708
+96,Nutmeg Mylk,,"100 W Cordova St, Vancouver, BC V6B 0G6, Canada",Vancouver,CAD,BC,,4,8
+97,Squamish Water Kefir,Box 571,"Brackendale, Squamish, BC, Canada",Brackendale,CAD,BC,V0N 1H0,82.9,165.8
+98,Sweet Earth Farms,4-42312 Yarrow Central Rd,"42312 Yarrow Central Rd, Chilliwack, BC V2R 5E2, Canada",Yarrow,CAD,BC,V2R 5E2,87.6,175.2
+99,Dean's Milkman,,"14301 256 St, Maple Ridge, BC V4R 0B9, Canada",,CANADA,,,52.5,105
+100,Skipper Otto,,,,CANADA,,,,0
+101,Gentle Earth,#15 - 850 Shawnigan Mill Bay Rd.,"850 Shawnigan Lake-Mill Bay Rd, Mill Bay, BC V0R 2P2, Canada",Mill Bay,Canada,BC,V0R 2P2,114,228
+102,Black Sheep Vegan Cheeze,,,,CAD,,,,0
+103,Tempea Natural Foods,,"North Vancouver, British Columbia, Canada",,CAN,,,14.2,28.4
+104,Just the Goods,167 Logan Ave,,Winnepeg,CANADA,MB,,,0
+105,Livvy's Bakery,5986 Sherbrooke St,,Vancouver,CANADA,BC,V5W 3N2,,0
+106,Cranberry Meadows,,"Cranberry Meadows Country Market, 13672 Reichenbach Rd, Pitt Meadows, BC V3Y 1Z1, Canada",,CAN,,,32.2,64.4
+107,The Modern Pantry,,,,USA,,,,0
+108,Two Daughters Bakeshop,121 East 1st Street,"121 1st St E, North Vancouver, BC V7L 1B2, Canada",Vancouver,Canada,BC,,14.4,28.8
+109,Yellow Basket Baking,,"400 Industrial Ave, Vancouver, BC V6A 2P3, Canada",,USA,,,2,4
+110,Lakehouse Foods,,,,USA,,,,0
+111,Tree Island Gourmet Yogurt,,"Tree Island Gourmet Yogurt, 3747 Island Hwy S, Courtenay, BC V9N 9T4, Canada",,USA,,,191,382
+113,Cropthorne Farm,,"Cropthorne Farm, 4362 Tamboline Rd, Delta, BC V4K 3N2, Canada",,USA,,,28.8,57.6
+114,Sea Smart,,,,USA,,,,0
+115,Bows & Arrows,,"Bows & Arrows Coffee Roasters, 483 Garbally Rd, Victoria, BC V8T 2J9, Canada",,USA,,,111,222
+116,Two Daughters Bakeshop,121 East 1st Street,"121 1st St E, North Vancouver, BC V7L 1B2, Canada",North Vancouver,Canada,BC,,14.4,28.8
+117,Two Daughters Bakeshop,121 East 1st Street,"121 1st St E, North Vancouver, BC V7L 1B2, Canada",North Vancouver,Canada,British Columbia,,14.4,28.8
+118,Bows & Arrows,483 Garbally Rd,"483 Garbally Rd, Victoria, BC V8T 2K1, Canada",Victoria,Canada,British Columbia,V8T 2J9,111,222
+119,Flourgirl Baking,417 Industrial Ave,"417 Industrial Ave, Vancouver, BC V6A 2P3, Canada",Vancouver,Canada,BC,V6A 2P3,1.9,3.8
+120,Nada Cafe,,,,USA,,,,0
+121,Flourgirl Baking,417 Industrial Ave,"417 Industrial Ave, Vancouver, BC V6A 2P3, Canada",Vancouver,Canada,BC,,1.9,3.8
+123,Keegan's Card Company,4664 Lancelot Court,"4664 Lancelot Ct, Richmond, BC V7C 4S2, Canada",Richmond,Canada,BC,V7C4S2,17.5,35
+124,Studio Full Bloom,,,,USA,,,,0
+125,Tayybeh,401 Industrial Ave,"Tayybeh, 401 Industrial Ave, Vancouver, BC V6G 2R7, Canada",Vancouver,Canada,BC,V6G 2R7,1.9,3.8
+127,Biota Fermentation,,"BIOTA FERMENTATION, 3191 Thunderbird Crescent #111, Burnaby, BC V5A 3G1, Canada",,Canada,,,13.5,27
+128,Solfeggio,,"Squamish, British Columbia, Canada",Whistler,Canada,,,75.7,151.4
+130,Susgrainable Health Foods Inc.,,"Susgrainable Health Foods Inc, 1507 Powell St, Vancouver, BC V5L 5C3, Canada",,Canada,,,3.6,7.2
+131,Golden Ears Cheese Crafters,22270 128 Ave.,"22270 128 Ave, Maple Ridge, BC V4R 2R1, Canada",Maple Ridge,Canada,BC,V4R 2R1,40.6,81.2
+132,City Beet Farm,,,,USA,,,,0
+133,Two Rivers Specialty Meats,180 Donaghy Ave,"180 Donaghy Ave, North Vancouver, BC V7P 2L5, Canada",North Vancouver,Canada,B.C.,V7P 2L5,13.1,26.2
+134,TMRW Foods,,"TMRW Foods, 1650 Broadway St #100, Port Coquitlam, BC V3C 2M8, Canada",Vancouver,Canada,BC,,27.9,55.8
+135,Plantbase Food & Specialties,400 Industrial Ave.,,Vancouver,Canada,BC,V6A2P3,,0
+136,Sweet 'n Sassy Vegan Treats,5558 Marine Drive,"5558 Marine Dr, Burnaby, BC V5J 3G8, Canada",Burnaby,Canada,BC,V5J 3G8,12.2,24.4
+137,Offbeat Produce,,,,USA,,,,0
+138,Satya Organic Skin Care,,"Vancouver, British Columbia, Canada",,USA,,,4.4,8.8
+139,A Bread Affair,1680 Johnston St,"1680 Johnston St, Vancouver, BC V6H 3Y1, Canada",Vancouver,Canada,BC,V6H 3S2,4.8,9.6
+140,Keegan’s Card Company,4664 Lancelot Court,"4664 Lancelot Ct, Richmond, BC V7C 4S2, Canada",Richmond,Canada,B.C.,,17.5,35
+141,Purity Life Health Products LP,6 Commerce Crescent,"6 Commerce Crescent, Acton, ON L7J 2X3, Canada",Acton,Canada,ON,L7J 2X3,4157,8314
+142,Leslie B,21530 Thornton Ave,,Maple Ridge,Canada,BC,V4R 2G8,,0
+143,Cranberry Meadows,,,,USA,,,,0
+144,SPEC,,"2305 W 7th Ave, Vancouver, BC V6K 1Y4, Canada",,USA,,,5.2,10.4
+145,Blue Heron Creamery,2410 Main St.,"2410 Main St, Vancouver, BC V5T 3H9, Canada",Vancouver,BC,,,1,2
+146,UNFI,12757 Vulcan Way #153,"12757 Vulcan Way, Richmond, BC V6V 1Z5, Canada","Richmond, BC",Canada,BC,V6V 2Z6,9.5,19
+147,Evergrow Christmas Trees,,"Evergrow Christmas Trees, 1166 Main St, Vancouver, BC V6A 4B6, Canada",,USA,,,2,4
+148,Juniperseed Mercantile,,"Juniperseed Mercantile, 28 E Arapahoe Rd, Littleton, CO 80122",,USA,,,2334,4668
+149,Say Hello Sweets,,"620 Quebec St, Vancouver, BC V6A 4E7, Canada",,USA,,,2.7,5.4
+150,Albatross Designs,PO Box 2254,"Poets Corner, Berkeley, CA 94702",Berkeley,USA,CA,94702,1509,3018
+151,Three Bluebirds,32 Sound Beach Ave,32 Sound Beach Ave,Old Greenwich,USA,CT,6870,4863,9726
+152,No Tox Life,3351 Fletcher Drive,"3351 Fletcher Dr, Los Angeles, CA 90065",Los Angeles,USA,CA,90065,2049,4098
+153,Ecobags,23-25 Spring Street Suite 302,23-25 Spring,Ossining,USA,NY,10562,4844,9688
+154,ECOlunchbox,PO Box 1602,"Lafayette, CA",Lafayette,USA,CA,94549,1505,3010
+155,Kula Cloth,,"Mill Creek, Washington",,USA,,,197,394
+156,Ecojarz,7 Union St,"7 Union St, Freeville, NY 13068",Freeville,USA,NY,13068,4637,9274
+157,Bambu,,"Portland, OR",,USA,,,516,1032
+158,Okanagan Rawsome,Box 25,"OKANAGAN RAWSOME, 92 Stroulger Rd, Grindrod, BC V0E 1Y0, Canada",Grindrod,Canada,BC,V0E 1Y0,476,952
+159,Berry Brook Organic Farm,2130 Mt. Lehman Rd,"2130 Mount Lehman Rd, Abbotsford, BC V4X 2L6, Canada",Abbotsford,Canada,BC,V4X 2L6,62.9,125.8
+160,Salty Cabbage,,"Salty Cabbage Kimchi, 1507 Powell St #150, Vancouver, BC V5L 5C3, Canada",Vancouver,Canada,,,3.7,7.4
+161,Bremner Foods,7237 Wilson Ave,"7237 Wilson Ave, Delta, BC V4G 1E5, Canada",Delta,Canada,BC,V4G 1E5,25.7,51.4
+162,BC Eco Seed Co-Op,,"Aldergrove, Langley Twp, BC, Canada",Vancouver,Canada,BC,,58.1,116.2
+163,Parallel 49 Brewing,1950 Triumph St,"1950 Triumph St, Vancouver, BC V5K 1T8, Canada",Vancouver,Canada,BC,V5L 1K5,4.5,9
+164,Coastie Craft,,"Coastie Craft Burgers, 401 Industrial Ave, Vancouver, BC V6A 2P8, Canada",,USA,,,1.9,3.8
+165,Sotavento,,,,USA,,,,0
+198,Guppyfriend,,,,USA,,,,0
+231,Green Can LLC,,"Green Can, LLC, 109 Commerce St, Glastonbury, CT 06033",,USA,,,4977,9954
+264,Kraut Source,,"1201 Pacific Ave, San Francisco, CA 94109",,USA,,,1525,3050
+265,Raw Elements,,"5445 Oceanus Dr #108, Huntington Beach, CA 92649",,USA,,,2101,4202
+297,Factory Direct Vinegar,,,,USA,,,,0
+330,Mason Bottle,,,,USA,,,,0
+,Amano Foods,"Amano Foods (1969) Ltd, 5520 No 6 Rd, Richmond, BC V6V 1Z1, Canada",,,,,,11.7,23.4
+,Avalon,,"7985 N Fraser Way, Burnaby, BC V5J 0A4, Canada",,,,,13.4,26.8
+,Anita's Organic,,"Anita's Organic Mill Store, 7697 Lickman Rd, Chilliwack, BC V2R 4A7, Canada",,,,,94.6,189.2
+,Artesian Acres,,,,,,,,
+,Prairie Harvest,,"12538 126 St NW, Edmonton, AB T5L 0X3, Canada",,,,,1151,2302
+,Cowichan Pasta Company,,"Duncan, British Columbia V9L 6W3, Canada",,,,,98.6,197.2
+,Live for Tomorrow,,"Port Coquitlam, British Columbia V3E 3G7, Canada",,,,,30.7,61.4

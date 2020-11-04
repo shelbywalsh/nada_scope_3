@@ -1,0 +1,29 @@
+---
+title: "scope_2"
+author: "Kate Shoemaker"
+date: "11/3/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE, message = FALSE, warning = FALSE, echo = FALSE}
+rm(list = ls())
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(tidyr)
+library(janitor)
+library(kableExtra)
+#library(car) # this package is apparently my computer's sworn nemesis
+library(devtools)
+library(broom)
+library(ggpubr)
+library(ggbeeswarm)
+library(RColorBrewer)
+library(effsize)
+library(stargazer)
+```
+
+1. Read in Data
+```{r}
+scope_2_data <-read_csv("")
+```
+
