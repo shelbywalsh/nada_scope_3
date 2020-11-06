@@ -235,4 +235,39 @@ distance29 <- all_data %>%
   add_column(distance_km = 83)
 ```
 
+# Bind all DF's together
+```{r}
+total_distance_data <- rbind(distance1, distance2, distance3, distance4, distance5, distance6, distance7, distance8, distance9, distance10, distance11, distance12, distance13, distance14, distance15, distance16, distance17, distance18, distance19, distance20, distance21,distance22, distance23, distance24, distance25, distance26, distance27, distance28, distance29)
+```
+
+# Group by purchase order# so each row = one shipment there and back from the vendor
+```{r}
+group_distance <- total_distance_data %>% 
+  group_by(purchase_order, vendor) %>% 
+  summarize(distance_km = mean(distance_km)) #use 'mean" cause I want a the single value of 1 trip (there & back)
+```
+
+# Group by vendor to see emissions by each vendor, arrange in descending order of total distance
+```{r}
+vendor_transport_distance <- group_distance %>% 
+  group_by(vendor) %>% 
+  summarize(sum_distance = sum(distance_km)) %>% 
+  arrange(desc(sum_distance))
+```
+
+# Calculate transportation emissions for CO2 for each vendor 
+```{r}
+vendor_emissions <- vendor_transport_distance %>% 
+  mutate(emission_factor_CO2 = 2.5) %>% 
+  mutate(kgco2e = emission_factor_CO2*sum_distance)
+```
+ 
+# Sum total transportation emissions for Nada
+```{r}
+total_emissions <- vendor_emissions %>% 
+  mutate(total_kgco2e = sum(kgco2e))
+  
+```
+
+
 
