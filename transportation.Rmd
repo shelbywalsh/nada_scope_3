@@ -23,26 +23,216 @@ library(RColorBrewer)
 library(effsize)
 library(stargazer)
 ```
+
+# Read in the data 
 ```{r}
 all_data <- read_csv("2019_vendor_invoice.csv") %>% 
-  clean_names()
+  clean_names() 
 ```
 
+Left Coast Naturals (1)
 ```{r}
-distance <- all_data %>% 
+distance1 <- all_data %>% 
   filter(grepl('Left Coast Naturals', vendor)) %>% 
   add_column(distance_km = 14)
-
-         
-      
   
 ```
-eggs_category_1 <- all_products %>% 
- filter(grepl('Eggs|eggs', item))
 
-# Subtract those words from all_products
-all_products <- all_products[!grepl('Eggs|eggs', all_products$item),]
+Discovery Organics (2)
+```{r}
+distance2 <- all_data %>% 
+  filter(grepl('Discovery Organics', vendor)) %>% 
+  add_column(distance_km = 6.6)
+```
 
-# Give Eggs the Product Category Code 1
-eggs_category_1 <- eggs_category_1 %>%
-  add_column(prod_cat = 1)
+Horizon Distributors (3)
+```{r}
+distance3 <- all_data %>% 
+  filter(grepl('Horizon Distributors', vendor)) %>% 
+  add_column(distance_km = 29.4)
+```
+
+Organic Matters (4)
+```{r}
+distance4 <- all_data %>% 
+  filter(grepl('Organic Matters', vendor)) %>% 
+  add_column(distance_km = 14)
+```
+
+LFT Group Brands Ltd. (5)
+```{r}
+distance5 <- all_data %>% 
+  filter(grepl('LFT Group Brands Ltd.', vendor)) %>% 
+  add_column(distance_km = 48.2)
+```
+
+Oneka Elements (6)
+```{r}
+distance6 <- all_data %>% 
+  filter(grepl('Organic Matters', vendor)) %>% 
+  add_column(distance_km = 1316)
+```
+
+Nelson Naturals	(7)
+```{r}
+distance7 <- all_data %>% 
+  filter(grepl('Nelson Naturals', vendor)) %>% 
+  add_column(distance_km = 1312)
+```
+
+Jiva Organics (8)
+```{r}
+distance8 <- all_data %>% 
+  filter(grepl('Jiva Organics', vendor)) %>% 
+  add_column(distance_km = 25.8)
+```
+
+Rehoboth Farm	(9)
+```{r}
+distance9 <- all_data %>% 
+  filter(grepl('Rehoboth Farm', vendor)) %>% 
+  add_column(distance_km = 178.6)
+```
+
+Dean's Milkman (10)
+```{r}
+distance10 <- all_data %>% 
+  filter(grepl("Dean's Milkman", vendor)) %>% 
+  add_column(distance_km = 105)
+```
+
+Westpoint Naturals (11)	
+```{r}
+distance11 <- all_data %>% 
+  filter(grepl('Westpoint Naturals', vendor)) %>% 
+  add_column(distance_km = 17.4)
+```
+
+Namasthé Tea Co. (12)
+```{r}
+distance12 <- all_data %>% 
+  filter(grepl('Namasthé Tea Co.', vendor)) %>% 
+  add_column(distance_km = 250)
+```
+
+Yoggu! (13)
+```{r}
+distance13 <- all_data %>% 
+  filter(grepl('Yoggu!', vendor)) %>% 
+  add_column(distance_km = 14.8)
+```
+
+Artisan Bake Shoppe	(14)
+```{r}
+distance14 <- all_data %>% 
+  filter(grepl('Artisan Bake Shoppe', vendor)) %>% 
+  add_column(distance_km = 21.4)
+```
+
+
+Onyx (15)
+```{r}
+distance15 <- all_data %>% 
+  filter(grepl('Onyx', vendor)) %>% 
+  add_column(distance_km = 15.2)
+```
+
+Hoochy ‘Booch Kombucha (16)
+```{r}
+distance16 <- all_data %>% 
+  filter(grepl('Hoochy ‘Booch Kombucha', vendor)) %>% 
+  add_column(distance_km = 4)
+```
+
+Brush Naked	(17)
+```{r}
+distance17 <- all_data %>% 
+  filter(grepl('Brush Naked', vendor)) %>% 
+  add_column(distance_km = 776)
+```
+
+East Van Roasters (18)
+```{r}
+distance18 <- all_data %>% 
+  filter(grepl('East Van Roasters', vendor)) %>% 
+  add_column(distance_km = 6.4)
+```
+
+Earnest Ice Cream	(19)
+```{r}
+distance19 <- all_data %>% 
+  filter(grepl('Earnest Ice Cream', vendor)) %>% 
+  add_column(distance_km = 6.4)
+```
+
+ULINE	(20)
+```{r}
+distance20 <- all_data %>% 
+  filter(grepl('ULINE', vendor)) %>% 
+  add_column(distance_km = 8310)
+```
+
+Plenty + Spare (21) YEEEEEEEEEEEEEET
+```{r}
+distance21 <- all_data %>% 
+  filter(grepl("Plenty + Spare", vendor)) %>% 
+  add_column(distance_km = 8.8)
+```
+
+Nellie's All-Natural (22)
+```{r}
+distance22 <- all_data %>% 
+  filter(grepl("Nellie's All-Natural", vendor)) %>% 
+  add_column(distance_km = 21.2)
+```
+
+The Modern Pantry	(23)
+```{r}
+distance23 <- all_data %>% 
+  filter(grepl("The Modern Pantry", vendor)) %>% 
+  add_column(distance_km = 21)
+```
+
+Dickie's Ginger	(24)
+```{r}
+distance24 <- all_data %>% 
+  filter(grepl("Dickie's Ginger", vendor)) %>% 
+  add_column(distance_km = 5.2)
+```
+
+Klippers Organics (25)
+```{r}
+distance25 <- all_data %>% 
+  filter(grepl("Klippers Organics", vendor)) %>% 
+  add_column(distance_km = 704)
+```
+
+A Bread Affair (26)
+```{r}
+distance26 <- all_data %>% 
+  filter(grepl("A Bread Affair", vendor)) %>% 
+  add_column(distance_km = 9.6)
+```
+
+Gathering Place Trading Company	(27)
+```{r}
+distance27 <- all_data %>% 
+  filter(grepl("Gathering Place Trading Company", vendor)) %>% 
+  add_column(distance_km = 528)
+```
+
+Fairware (28)
+```{r}
+distance28 <- all_data %>% 
+  filter(grepl("Fairware", vendor)) %>% 
+  add_column(distance_km = 4)
+```
+
+Nina's Pierogi (29)
+```{r}
+distance29 <- all_data %>% 
+  filter(grepl("Nina's Pierogi", vendor)) %>% 
+  add_column(distance_km = 83)
+```
+
+
