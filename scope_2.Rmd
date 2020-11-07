@@ -59,4 +59,15 @@ quebec_emissions_calc$quebec_co2_eq_tonnes <- quebec_emissions_calc$net_consumpt
 quebec_emissions_2019<- sum(quebec_emissions_calc$quebec_co2_eq_tonnes)/1000000
 ```
 
-5. % Change wit different emission factors 
+5. % Change with different emission factors 
+```{r}
+#ontario
+percent_change_ontario <- ((ontario_emissions_2019 - bc_emissions_2019)/ bc_emissions_2019)*100
+
+```
+
+```{r}
+#Quebec
+percent_change_quebec <- ((quebec_emissions_2019 - bc_emissions_2019)/ bc_emissions_2019)*100
+```
+
