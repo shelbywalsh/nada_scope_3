@@ -22,9 +22,41 @@ library(effsize)
 library(stargazer)
 ```
 
-1. Read in Data
+1. Read in Data & clean names
 ```{r}
 scope_2_data <-read_csv("scope_2_calculations3.csv") %>% 
   clean_names()
 ```
 
+2. BC Hydro CO2 eq tonnes calculation
+```{r}
+bc_emissions_calc <- scope_2_data %>% 
+  select(net_consumption_k_wh, bc_ef_gwh) 
+
+bc_emissions_calc$bc_co2_eq_tonnes <- bc_emissions_calc$net_consumption_k_wh * bc_emissions_calc$bc_ef_gwh 
+
+bc_emissions_2019<- sum(bc_emissions_calc$bc_co2_eq_tonnes)/1000000
+
+```
+
+3. Ontario CO2 eq tonnes calculation
+```{r}
+ontario_emissions_calc <- scope_2_data %>% 
+  select(net_consumption_k_wh, ontario_ef_gwh) 
+
+ontario_emissions_calc$ontario_co2_eq_tonnes <- ontario_emissions_calc$net_consumption_k_wh * ontario_emissions_calc$ontario_ef_gwh 
+
+ontario_emissions_2019<- sum(ontario_emissions_calc$ontario_co2_eq_tonnes)/1000000
+```
+
+4. Quebec CO2 eq tonnes calculation
+```{r}
+quebec_emissions_calc <- scope_2_data %>% 
+  select(net_consumption_k_wh, quebec_ef_gwh) 
+
+quebec_emissions_calc$quebec_co2_eq_tonnes <- quebec_emissions_calc$net_consumption_k_wh * quebec_emissions_calc$quebec_ef_gwh 
+
+quebec_emissions_2019<- sum(quebec_emissions_calc$quebec_co2_eq_tonnes)/1000000
+```
+
+5. % Change wit different emission factors 
