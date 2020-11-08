@@ -32,7 +32,7 @@ all_data <- read_csv("2019_vendor_invoice.csv") %>%
 
 Left Coast Naturals (1)
 ```{r}
-distance1 <- all_data %>% 
+distance01 <- all_data %>% 
   filter(grepl('Left Coast Naturals', vendor)) %>% 
   add_column(distance_km = 14)
   
@@ -40,56 +40,56 @@ distance1 <- all_data %>%
 
 Discovery Organics (2)
 ```{r}
-distance2 <- all_data %>% 
+distance02 <- all_data %>% 
   filter(grepl('Discovery Organics', vendor)) %>% 
   add_column(distance_km = 6.6)
 ```
 
 Horizon Distributors (3)
 ```{r}
-distance3 <- all_data %>% 
+distance03 <- all_data %>% 
   filter(grepl('Horizon Distributors', vendor)) %>% 
   add_column(distance_km = 29.4)
 ```
 
 Organic Matters (4)
 ```{r}
-distance4 <- all_data %>% 
+distance04 <- all_data %>% 
   filter(grepl('Organic Matters', vendor)) %>% 
   add_column(distance_km = 14)
 ```
 
 LFT Group Brands Ltd. (5)
 ```{r}
-distance5 <- all_data %>% 
+distance05 <- all_data %>% 
   filter(grepl('LFT Group Brands Ltd.', vendor)) %>% 
   add_column(distance_km = 48.2)
 ```
 
 Oneka Elements (6)
 ```{r}
-distance6 <- all_data %>% 
+distance06 <- all_data %>% 
   filter(grepl('Organic Matters', vendor)) %>% 
   add_column(distance_km = 1316)
 ```
 
 Nelson Naturals	(7)
 ```{r}
-distance7 <- all_data %>% 
+distance07 <- all_data %>% 
   filter(grepl('Nelson Naturals', vendor)) %>% 
   add_column(distance_km = 1312)
 ```
 
 Jiva Organics (8)
 ```{r}
-distance8 <- all_data %>% 
+distance08 <- all_data %>% 
   filter(grepl('Jiva Organics', vendor)) %>% 
   add_column(distance_km = 25.8)
 ```
 
 Rehoboth Farm	(9)
 ```{r}
-distance9 <- all_data %>% 
+distance09 <- all_data %>% 
   filter(grepl('Rehoboth Farm', vendor)) %>% 
   add_column(distance_km = 178.6)
 ```
@@ -237,37 +237,62 @@ distance29 <- all_data %>%
 
 # Bind all DF's together
 ```{r}
-total_distance_data <- rbind(distance1, distance2, distance3, distance4, distance5, distance6, distance7, distance8, distance9, distance10, distance11, distance12, distance13, distance14, distance15, distance16, distance17, distance18, distance19, distance20, distance21,distance22, distance23, distance24, distance25, distance26, distance27, distance28, distance29)
+combined_DF_distance <- rbind(distance01, distance02, distance03, distance04, distance05, distance06, distance07, distance08, distance09, distance10, distance11, distance12, distance13, distance14, distance15, distance16, distance17, distance18, distance19, distance20, distance21,distance22, distance23, distance24, distance25, distance26, distance27, distance28, distance29)
 ```
+
 
 # Group by purchase order# so each row = one shipment there and back from the vendor
 ```{r}
-group_distance <- total_distance_data %>% 
+purchaseorder_distance <- combined_DF_distance %>% 
   group_by(purchase_order, vendor) %>% 
   summarize(distance_km = mean(distance_km)) #use 'mean" cause I want a the single value of 1 trip (there & back)
 ```
 
+# Calculate emissions for transportation 
+```{r}
+emissions_transport <- purchaseorder_distance %>% 
+  group_by(vendor) %>%
+  summarize(sum_distance = sum(distance_km)) %>% 
+  arrange(desc(sum_distance)) %>%  # Group by vendor to see total distance by each vendor, arrange in descending order of total distance
+  mutate(emission_factor_CO2 = 2.5) %>% 
+  mutate(kgco2e = emission_factor_CO2*sum_distance) %>% # Calculate transportation emissions for CO2 for each vendor
+  mutate(total_kgco2e = sum(kgco2e)) # Sum total transportation emissions for Nada
+  
+```
+
+
+
+
+
+
+
+
+# Step by step explanation of above (emissions_transport), can be deleted later 
 # Group by vendor to see emissions by each vendor, arrange in descending order of total distance
 ```{r}
-vendor_transport_distance <- group_distance %>% 
-  group_by(vendor) %>% 
-  summarize(sum_distance = sum(distance_km)) %>% 
-  arrange(desc(sum_distance))
+#vendor_transport_distance <- purchaseorder_distance %>% 
+  #group_by(vendor) %>% 
+  #summarize(sum_distance = sum(distance_km)) %>% 
+  #arrange(desc(sum_distance))
 ```
 
 # Calculate transportation emissions for CO2 for each vendor 
 ```{r}
-vendor_emissions <- vendor_transport_distance %>% 
-  mutate(emission_factor_CO2 = 2.5) %>% 
-  mutate(kgco2e = emission_factor_CO2*sum_distance)
+#vendor_emissions <- vendor_transport_distance %>% 
+  #mutate(emission_factor_CO2 = 2.5) %>% 
+  #mutate(kgco2e = emission_factor_CO2*sum_distance)
 ```
  
 # Sum total transportation emissions for Nada
 ```{r}
-total_emissions <- vendor_emissions %>% 
-  mutate(total_kgco2e = sum(kgco2e))
+#total_emissions <- vendor_emissions %>% 
+  #mutate(total_kgco2e = sum(kgco2e))
   
 ```
+
+
+
+
 
 
 
