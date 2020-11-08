@@ -83,11 +83,11 @@ eggs_category_1 <- eggs_category_1 %>%
 ```{r}
 # Cheese
 cheese_category_2 <- all_products %>% 
- filter(grepl('Cheese,|Charmisan|Cream Cheese|Feta', item))
+ filter(grepl('Cheese,|Charmisan|Cream Cheese|Feta|Shreds|Vegan Cheese|Cashew Ricotta', item))
 # Questionable whether cream cheese belongs here
 
 # Subtract those words from all_products
-all_products <- all_products[!grepl('Cheese,|Charmisan|Cream Cheese|Feta', all_products$item),]
+all_products <- all_products[!grepl('Cheese,|Charmisan|Cream Cheese|Feta|Shreds|Vegan Cheese|Cashew Ricotta', all_products$item),]
 
 # Product Category Code
 cheese_category_2 <- cheese_category_2 %>%
@@ -160,7 +160,7 @@ breads_category_6 <- all_products %>%
 # Note that the next category includes cookies and crackers. This one is just breads.
 
 # Subtract those words from all_products
-all_products <- all_products[!grepl('Pepperoni|Bratwurst|Sausage|Chorizo', all_products$item),]
+all_products <- all_products[!grepl('Bread|Hamburger|Crouton|Loaf', all_products$item),]
 
 # Product Category Code
 breads_category_6 <- breads_category_6  %>%
@@ -222,52 +222,117 @@ dried_category_10   <- dried_category_10 %>%
   add_column(prod_cat = 10)
 ```
 
-(11) Fats and oils refining and blending
+(11) Ice cream and frozen dessert manufacturing
 ```{r}
-oils_category_11 <- all_products %>% 
- filter(grepl('Oil', item))
-
-# Subtract those words from all_products
-all_products <- all_products[!grepl('Oil', all_products$item),]
-
-# Product Category Code
-oils_category_11   <- oils_category_11 %>%
-  add_column(prod_cat = 11)
-```
-
-(12) Ice cream and frozen dessert manufacturing
-```{r}
-icecream_category_12 <- all_products %>% 
+icecream_category_11 <- all_products %>% 
  filter(grepl('Ice Cream', item))
 
 # Subtract those words from all_products
 all_products <- all_products[!grepl('Ice Cream', all_products$item),]
 
 # Product Category Code
-icecream_category_12   <- icecream_category_12 %>%
+icecream_category_11   <- icecream_category_11 %>%
+  add_column(prod_cat = 11)
+```
+
+(12) Frozen food
+```{r}
+frozen_category_12 <- all_products %>% 
+ filter(grepl('Frozen', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Frozen', all_products$item),]
+
+# Product Category Code
+frozen_category_12   <- frozen_category_12 %>%
   add_column(prod_cat = 12)
 ```
 
-(13) Flavoring Syrup and Concentrates
+(14) Dry, condensed, and evaporated dairy product manufacturing
+```{r}
+dairy_category_14 <- all_products %>% 
+ filter(grepl('Milk Powder', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Milk Powder', all_products$item),]
+
+# Product Category Code
+dairy_category_14 <- dairy_category_14 %>%
+  add_column(prod_cat = 14)
+```
+
+
+(15) Fluid milk and butter manufacturing
+```{r}
+dairy_category_15 <- all_products %>% 
+ filter(grepl('Milk|Mylk|Butter, Salted|Butter, Vegan|Cultured Butter', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Milk|Mylk|Butter, Salted|Butter, Vegan|Cultured Butter', all_products$item),]
+
+# Product Category Code
+dairy_category_15 <- dairy_category_15 %>%
+  add_column(prod_cat = 15)
+```
+
+(16) Soybean and other oilseed processing
+
+```{r}
+oilseed_category_16 <- all_products %>% 
+ filter(grepl('Oil|Tofu|Tempeh|Tempea|Soy Protein|Pea Protein', item))
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Oil|Tofu|Tempeh|Tempea|Soy Protein|Pea Protein|Tahini', all_products$item),]
+
+# Product Category Code
+oilseed_category_16 <- oilseed_category_16 %>%
+  add_column(prod_cat = 16)
+```
+
+(17) Oilseed farming
+```{r}
+oilseed_category_17 <- all_products %>% 
+ filter(grepl('Lentil|Peas|Soybeans|, Raw|Cashews, Whole', item))
+```
+
+
+
+ Snack food manufacturing
+
+```{r}
+snack_category_16 <- all_products %>% 
+ filter(grepl('Cashew|Almond|Peanut|Chip', item))
+# Avoiding capturing "butternut"
+
+# Subtract those words from all_products
+all_products <- all_products[!grepl('Milk|Mylk|Butter, Salted|Butter, Vegan|Cultured Butter', all_products$item),]
+
+# Product Category Code
+dairy_category_15 <- dairy_category_15 %>%
+  add_column(prod_cat = 15)
+```
+
+
+(11) Fruit and tree nut farming
+```{r}
+category_11 <- all_products %>% 
+ filter(grepl('Raw', item))
+
+```
+(14) Tree nut Cocominos
+
+(16) Oilseed farming
 ```{r}
 syrup_category_13 <- all_products %>% 
- filter(grepl('Syrup|Concen', item))
-
+ filter(grepl('Lentil|Peas|Soybeans', item))
 ```
 
 Tempea - Chickpea, Lentil
 Peanut
 
-Tree nut Cocominos
 
-() Soybean and other oilseed processing
+Hemp 
 
-```{r}
-oilseed_category_13 <- all_products %>% 
- filter(grepl('Soy|Tofu', item))
-# Oilseeds include
-
-```
 
 ```{r}
 test_df <- all_data %>% 
