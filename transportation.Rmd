@@ -169,7 +169,7 @@ ULINE	(20)
 ```{r}
 distance20 <- all_data %>% 
   filter(grepl('ULINE', vendor)) %>% 
-  add_column(distance_km = 8310)
+  add_column(distance_km = 8648)
 ```
 
 Plenty + Spare (21) YEEEEEEEEEEEEEET
@@ -248,6 +248,14 @@ purchaseorder_distance <- combined_DF_distance %>%
   summarize(distance_km = mean(distance_km)) #use 'mean" cause I want a the single value of 1 trip (there & back)
 ```
 
+# Count Purchase Orders by Vendor to see number of orders per vendor
+```{r}
+trips_by_vendor <- purchaseorder_distance %>% 
+  group_by(vendor) %>% 
+  summarise(trips = n()) %>% 
+  arrange(desc(trips))
+```
+
 # Calculate emissions for transportation 
 ```{r}
 emissions_transport <- purchaseorder_distance %>% 
@@ -256,14 +264,37 @@ emissions_transport <- purchaseorder_distance %>%
   arrange(desc(sum_distance)) %>%  # Group by vendor to see total distance by each vendor, arrange in descending order of total distance
   mutate(emission_factor_CO2 = 2.5) %>% 
   mutate(kgco2e = emission_factor_CO2*sum_distance) %>% # Calculate transportation emissions for CO2 for each vendor
-  mutate(total_kgco2e = sum(kgco2e)) # Sum total transportation emissions for Nada
-  
+  mutate(total_kgco2e = sum(kgco2e)) %>%  # Sum total transportation emissions for Nada
+  mutate(percent_contribution = kgco2e/total_kgco2e*100) %>% # See percent contribution to emissions by supplier
+  mutate(cumulative_pct_emissions = cumsum(percent_contribution)) # See cumulative percent contribution
+```
+
+# Filter (for fun) purchase order distance to eliminate suppliers >50km, then re-calculate total emissions
+```{r}
+local_distance <- purchaseorder_distance %>% 
+  filter(distance_km < 50) %>% 
+  group_by(vendor) %>%
+  summarize(sum_distance = sum(distance_km)) %>% 
+  arrange(desc(sum_distance)) %>%  # Group by vendor to see total distance by each vendor, arrange in descending order of total distance
+  mutate(emission_factor_CO2 = 2.5) %>% 
+  mutate(kgco2e = emission_factor_CO2*sum_distance) %>% # Calculate transportation emissions for CO2 for each vendor
+  mutate(total_kgco2e = sum(kgco2e)) 
 ```
 
 
 
+Using 'delivery truck' fuel economy (6.5mpg) from here:
+https://afdc.energy.gov/data/10310 
 
+And mobile combustion CO2 'motor gasoline' emission factor (8.78kgCO2/gallon) from EPA:  https://www.epa.gov/sites/production/files/2018-03/documents/emission-factors_mar_2018_0.pdf
 
+6.5miles/gallon = 10.46 km / gallon
+
+x km / 10.46km per gallon = left with gallons
+
+Then times by 
+From EPA Motor Gasoline
+8.78 kg CO2 per gallon 
 
 
 
