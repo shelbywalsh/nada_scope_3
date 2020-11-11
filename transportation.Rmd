@@ -31,6 +31,22 @@ all_data <- read_csv("2019_vendor_invoice.csv") %>%
   clean_names() 
 ```
 
+Look at % spend for all suppliers
+```{r}
+all_spend_grouping <- all_data  %>% 
+  group_by(vendor) %>% 
+  summarise(cost = sum(total_cost)) %>% 
+  arrange(-cost) %>% 
+  mutate(pct_contribution = cost/sum(cost)*100) %>% 
+  mutate(cumulative_pct = cumsum(pct_contribution)) %>% 
+  mutate_if(is.numeric, ~round(., 1))
+  
+```
+
+# Total of 108 suppliers in 2019
+# 29 suppliers make up top 80% of spend
+# Category A: Top 29 Suppliers 
+
 Left Coast Naturals (1)
 ```{r}
 distance01 <- all_data %>% 
@@ -316,6 +332,10 @@ Multiply gallons by 8.78 kg CO2/gallon to get kg CO2
 2008-present
 CH4: 0.0333 g/ mile (1 mile / 1.60934 km) = 0.020692 g / km = 0.000020692 kg CH4 / km 
 N2O: 0.0134 g/ mile (1 mile / 1.60934 km) = 0.0083264 g / km = 0.0000083264 kg N2O / km
+
+
+
+
 
 
 
