@@ -277,14 +277,15 @@ trips_by_vendor <- purchaseorder_distance %>%
 ```{r}
 emissions_transport <- purchaseorder_distance %>% 
   group_by(vendor) %>%
-  summarize(sum_distance = sum(distance_km)) %>% # Sum total distance by ecah vendor
-  arrange(desc(sum_distance)) %>%  # Group by vendor to see total distance by each vendor, arrange in descending order of total distance
+  summarize(sum_distance_km = sum(distance_km)) %>% # Sum total distance by ecah vendor
+  arrange(desc(sum_distance_km)) %>%  # Group by vendor to see total distance by each vendor, arrange in descending order of total distance
+  mutate(total_miles = sum(sum_distance_km)*0.621371) %>% # calculate total miles (to use in other calcs)
   mutate(kg_CO2_pergal = 8.78) %>% # See note (2): 8.78 kgCO2 / gal from EPA motor gasoline
   mutate(kg_CH4_perkm = 0.000020692) %>% # Emission factor calculated in note (3) 
   mutate(kg_N2O_perkm = 0.0000083264) %>% # Emission factor calculated in note (3)
-  mutate(kgCO2 = sum_distance/10.46*kg_CO2_pergal) %>% # See note (1): Calculate transportation emissions for CO2 for each vendor
-  mutate(kg_CO2e_CH4 = kg_CH4_perkm*sum_distance*28) %>% # Calculate CO2e for CH4, GWP 28
-  mutate(kg_CO2e_N2O = kg_N2O_perkm*sum_distance*265) %>% # Calculate CO2e for N2O, GWP 265
+  mutate(kgCO2 = sum_distance_km/10.46*kg_CO2_pergal) %>% # See note (1): Calculate transportation emissions for CO2 for each vendor
+  mutate(kg_CO2e_CH4 = kg_CH4_perkm*sum_distance_km*28) %>% # Calculate CO2e for CH4, GWP 28
+  mutate(kg_CO2e_N2O = kg_N2O_perkm*sum_distance_km*265) %>% # Calculate CO2e for N2O, GWP 265
   mutate(kg_CO2e = kg_CO2e_CH4 + kg_CO2e_N2O + kgCO2) %>% # Sum CO2e for CO2 + N2O + CH4
   mutate(total_kgCO2e = sum(kg_CO2e)) %>%  # Sum total transportation emissions for Nada
   mutate(pct_contribution = kg_CO2e/total_kgCO2e*100) %>% # See percent contribution to emissions by supplier
@@ -323,6 +324,10 @@ https://afdc.energy.gov/data/10310
 
 x km / 10.46km per gallon = left with gallons
 Multiply gallons by 8.78 kg CO2/gallon to get kg CO2 
+
+According to https://business.edf.org/insights/green-freight-math-how-to-calculate-emissions-for-a-truck-move/
+Freight Truck emission factor = 161.8 g / ton-mile or 0.1618 kg / ton-mile
+  - As currently calculated (using straight-up miles), Nada's suppliers would emit ~1.35 kg / mile (total kg CO2e/total_miles). This number is much higher than the 'ton-mile' emission factor, although, if we assumed that each truck carried about 8.5 tons, then the 'ton-mile' factor (8.5tons*0.1618 kg/ton-mile ~ 1.37 kg/mile ) becomes almost the same as currently calculated. I guess if we used ton-mile, the emissions for transport would depend heavily on the assumed amount of weight each truck is carrying. 
 
 (2) Mobile combustion CO2 'motor gasoline' emission factor (8.78kgCO2/gallon) from EPA:  https://www.epa.gov/sites/production/files/2018-03/documents/emission-factors_mar_2018_0.pdf
 
