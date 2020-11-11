@@ -29,6 +29,9 @@ library(stargazer)
 ```{r}
 all_data <- read_csv("2019_vendor_invoice.csv") %>% 
   clean_names() 
+
+#all_data$vendor <- gsub("Left Coast Naturals", "Plenty and Spare", all_data$vendor)
+
 ```
 
 Look at % spend for all suppliers
