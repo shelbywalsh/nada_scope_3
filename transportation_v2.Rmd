@@ -1,5 +1,5 @@
 ---
-title: "transportation"
+title: "transportationV2"
 author: "Andrew Salvador"
 date: "10/30/2020"
 output: html_document
@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+#options(scipen = 999)
 ```
 
 ```{r}
@@ -28,7 +29,6 @@ library(stargazer)
 ```{r}
 all_data <- read_csv("2019_vendor_invoice.csv") %>% 
   clean_names() 
-clean_names(all_data$vendor)
 ```
 
 Look at % spend for all suppliers
@@ -186,7 +186,7 @@ ULINE	(20)
 ```{r}
 distance20 <- all_data %>% 
   filter(grepl('ULINE', vendor)) %>% 
-  add_column(distance_km = 8310)
+  add_column(distance_km = 8648)
 ```
 
 Plenty + Spare (21) YEEEEEEEEEEEEEET
@@ -194,7 +194,6 @@ Plenty + Spare (21) YEEEEEEEEEEEEEET
 distance21 <- all_data %>% 
   filter(grepl("Plenty + Spare", vendor)) %>% 
   add_column(distance_km = 8.8)
-
 ```
 
 Nellie's All-Natural (22)
@@ -266,17 +265,73 @@ purchaseorder_distance <- combined_DF_distance %>%
   summarize(distance_km = mean(distance_km)) #use 'mean" cause I want a the single value of 1 trip (there & back)
 ```
 
+# Count Purchase Orders by Vendor to see number of orders per vendor
+```{r}
+trips_by_vendor <- purchaseorder_distance %>% 
+  group_by(vendor) %>% 
+  summarise(trips = n()) %>% 
+  arrange(desc(trips))
+```
+
 # Calculate emissions for transportation 
 ```{r}
 emissions_transport <- purchaseorder_distance %>% 
   group_by(vendor) %>%
-  summarize(sum_distance = sum(distance_km)) %>% 
+  summarize(sum_distance = sum(distance_km)) %>% # Sum total distance by ecah vendor
   arrange(desc(sum_distance)) %>%  # Group by vendor to see total distance by each vendor, arrange in descending order of total distance
-  mutate(emission_factor_CO2 = 2.5) %>% 
-  mutate(kgco2e = emission_factor_CO2*sum_distance) %>% # Calculate transportation emissions for CO2 for each vendor
-  mutate(total_kgco2e = sum(kgco2e)) # Sum total transportation emissions for Nada
+  mutate(kg_CO2_pergal = 8.78) %>% # See note (2): 8.78 kgCO2 / gal from EPA motor gasoline
+  mutate(kg_CH4_perkm = 0.000020692) %>% # Emission factor calculated in note (3) 
+  mutate(kg_N2O_perkm = 0.0000083264) %>% # Emission factor calculated in note (3)
+  mutate(kgCO2 = sum_distance/10.46*kg_CO2_pergal) %>% # See note (1): Calculate transportation emissions for CO2 for each vendor
+  mutate(kg_CO2e_CH4 = kg_CH4_perkm*sum_distance*28) %>% # Calculate CO2e for CH4, GWP 28
+  mutate(kg_CO2e_N2O = kg_N2O_perkm*sum_distance*265) %>% # Calculate CO2e for N2O, GWP 265
+  mutate(kg_CO2e = kg_CO2e_CH4 + kg_CO2e_N2O + kgCO2) %>% # Sum CO2e for CO2 + N2O + CH4
+  mutate(total_kgCO2e = sum(kg_CO2e)) %>%  # Sum total transportation emissions for Nada
+  mutate(pct_contribution = kg_CO2e/total_kgCO2e*100) %>% # See percent contribution to emissions by supplier
+  mutate(cumulative_pct_emissions = cumsum(pct_contribution)) %>% # See cumulative percent contribution
+  mutate_if(is.numeric, ~round(., 3)) # Round to 3 decimal places
   
 ```
+
+# Filter (for fun) purchase order distance to eliminate suppliers >50km, then re-calculate total emissions
+
+```{r}
+local <- purchaseorder_distance %>% 
+  filter(distance_km <50) %>% 
+  group_by(vendor) %>%
+  summarize(sum_distance = sum(distance_km)) %>% # Sum total distance by each vendor
+  arrange(desc(sum_distance)) %>%  # Group by vendor to see total distance by each vendor, arrange in descending order of total distance
+  mutate(kg_CO2_pergal = 8.78) %>% # See note (2): 8.78 kgCO2 / gal from EPA motor gasoline
+  mutate(kg_CH4_perkm = 0.000020692) %>% # Emission factor calculated in note (3) 
+  mutate(kg_N2O_perkm = 0.0000083264) %>% # Emission factor calculated in note (3)
+  mutate(kgCO2 = sum_distance/10.46*kg_CO2_pergal) %>% # See note (1): Calculate transportation emissions for CO2 for each vendor
+  mutate(kg_CO2e_CH4 = kg_CH4_perkm*sum_distance*28) %>% # Calculate CO2e for CH4, GWP 28
+  mutate(kg_CO2e_N2O = kg_N2O_perkm*sum_distance*265) %>% # Calculate CO2e for N2O, GWP 265
+  mutate(kg_CO2e = kg_CO2e_CH4 + kg_CO2e_N2O + kgCO2) %>% # Sum CO2e for CO2 + N2O + CH4
+  mutate(total_kgCO2e = sum(kg_CO2e)) %>%  # Sum total transportation emissions for Nada
+  mutate(pct_contribution = kg_CO2e/total_kgCO2e*100) %>% # See percent contribution to emissions by supplier
+  mutate(cumulative_pct_emissions = cumsum(pct_contribution)) %>% # See cumulative percent contribution
+  mutate_if(is.numeric, ~round(., 3))
+```
+
+
+NOTES: 
+(1) Using 'delivery truck' fuel economy (6.5mpg) from here:
+https://afdc.energy.gov/data/10310 
+
+6.5miles/gallon = 10.46 km / gallon
+
+x km / 10.46km per gallon = left with gallons
+Multiply gallons by 8.78 kg CO2/gallon to get kg CO2 
+
+(2) Mobile combustion CO2 'motor gasoline' emission factor (8.78kgCO2/gallon) from EPA:  https://www.epa.gov/sites/production/files/2018-03/documents/emission-factors_mar_2018_0.pdf
+
+
+(3) Gasoline Heavy Duty Vehicles EPA emission factors CH4 & N2O
+2008-present
+CH4: 0.0333 g/ mile (1 mile / 1.60934 km) = 0.020692 g / km = 0.000020692 kg CH4 / km 
+N2O: 0.0134 g/ mile (1 mile / 1.60934 km) = 0.0083264 g / km = 0.0000083264 kg N2O / km
+
 
 
 
@@ -311,10 +366,3 @@ emissions_transport <- purchaseorder_distance %>%
   #mutate(total_kgco2e = sum(kgco2e))
   
 ```
-
-
-
-
-
-
-
