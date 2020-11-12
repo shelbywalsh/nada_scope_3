@@ -30,7 +30,7 @@ library(stargazer)
 all_data <- read_csv("2019_vendor_invoice.csv") %>% 
   clean_names() 
 
-#all_data$vendor <- gsub("Left Coast Naturals", "Plenty and Spare", all_data$vendor)
+all_data$vendor <- gsub("[+]", "and", all_data$vendor) #get rid of the "+" symbol
 
 ```
 
@@ -192,10 +192,10 @@ distance20 <- all_data %>%
   add_column(distance_km = 8648)
 ```
 
-Plenty + Spare (21) YEEEEEEEEEEEEEET
+Plenty and Spare (21) 
 ```{r}
 distance21 <- all_data %>% 
-  filter(grepl("Plenty + Spare", vendor)) %>% 
+  filter(grepl("Plenty and Spare", vendor)) %>% 
   add_column(distance_km = 8.8)
 ```
 
