@@ -149,7 +149,6 @@ distance14 <- all_data %>%
   add_column(distance_km = 21.4)
 ```
 
-
 Onyx (15)
 ```{r}
 distance15 <- all_data %>% 
