@@ -839,7 +839,7 @@ trips_by_vendor <- purchaseorder_distance %>%
   arrange(desc(trips))
 ```
 
-# Calculate emissions for transportation 
+# Calculate emissions for transportation using EPA emission factors (See notes 1-3) 
 ```{r}
 emissions_transport <- purchaseorder_distance %>% 
   group_by(vendor) %>%
@@ -881,6 +881,26 @@ local <- purchaseorder_distance %>%
   mutate_if(is.numeric, ~round(., 3))
 ```
 
+Something weird going on giving me a fatal error
+# Sensitivity analysis using different emisison factors (See notees 4-xx)
+```{r}
+#short_ton_sensitivity <- purchaseorder_distance %>%  
+  group_by(vendor) %>% 
+  summarize(distance_km = sum(distance_km)) %>% # Sum total distance by each vendor
+  arrange(desc(distance_km)) %>%  # Group by vendor to see total distance by each vendor, arrange in descending order of total distance
+  mutate(miles_traveled = distance_km*0.621371)  # Convert km to miles
+
+
+  mutate(total_miles = sum(sum_distance_km)*0.621371) %>% # calculate total miles (to use in other calcs)
+  mutate(kg_CO2_pershortton = 0.1618) %>% # See note (4) for this emission factor 
+  mutate(emissions_kgCO2 = kg_CO2_pershortton*miles_traveled) %>%  # Calculate emissions per vendor
+  mutate(total_emissions = sum(emissions_kgCO2) %>% # Sum emissions/vendor to get total emissions
+  mutate(pct_contribution =emissions_kgCO2/total_emissions*100) %>% # See percent contribution to emissions by supplier
+  mutate(cumulative_pct_emissions = cumsum(pct_contribution)) %>% # See cumulative percent contribution
+  mutate_if(is.numeric, ~round(., 2)) # Round to 3 decimal places
+  
+```
+
 
 NOTES: 
 (1) Using 'delivery truck' fuel economy (6.5mpg) from here:
@@ -899,41 +919,13 @@ Freight Truck emission factor = 161.8 g / ton-mile or 0.1618 kg / ton-mile
 
 
 (3) Gasoline Heavy Duty Vehicles EPA emission factors CH4 & N2O
-2008-present
-CH4: 0.0333 g/ mile (1 mile / 1.60934 km) = 0.020692 g / km = 0.000020692 kg CH4 / km 
-N2O: 0.0134 g/ mile (1 mile / 1.60934 km) = 0.0083264 g / km = 0.0000083264 kg N2O / km
+- 2008-present model 
+- CH4: 0.0333 g/ mile (1 mile / 1.60934 km) = 0.020692 g / km = 0.000020692 kg CH4 / km 
+- N2O: 0.0134 g/ mile (1 mile / 1.60934 km) = 0.0083264 g / km = 0.0000083264 kg N2O / km
 
-
-
-
-
-
-
-
-
-
-
-
-
-# Step by step explanation of above (emissions_transport), can be deleted later 
-# Group by vendor to see emissions by each vendor, arrange in descending order of total distance
-```{r}
-#vendor_transport_distance <- purchaseorder_distance %>% 
-  #group_by(vendor) %>% 
-  #summarize(sum_distance = sum(distance_km)) %>% 
-  #arrange(desc(sum_distance))
-```
-
-# Calculate transportation emissions for CO2 for each vendor 
-```{r}
-#vendor_emissions <- vendor_transport_distance %>% 
-  #mutate(emission_factor_CO2 = 2.5) %>% 
-  #mutate(kgco2e = emission_factor_CO2*sum_distance)
-```
- 
-# Sum total transportation emissions for Nada
-```{r}
-#total_emissions <- vendor_emissions %>% 
-  #mutate(total_kgco2e = sum(kgco2e))
-  
-```
+(4) Short-Ton Sensitivity Analysis
+- Emission factor: 161.8 g CO2/ton-mile = 0.1618 kg CO2/ton-mile
+- Assume each truck carries 10 short tons 
+- So multiply miles traveled by 10 tons to get ton-miles 
+- Then multiply by emission factor to get kg CO2
+https://business.edf.org/insights/green-freight-math-how-to-calculate-emissions-for-a-truck-move/
