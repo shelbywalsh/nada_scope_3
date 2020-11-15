@@ -25,10 +25,24 @@ library(stargazer)
 Entering in CSV with data from 2019 Cafe, compost, employee diversion
 
 ```{r}
+#removing everything by 2019 data and rnaming the columns
 total_waste_2019 <- read_csv("food_waste_data_2019_cafe_compost.csv") %>% 
   clean_names() %>% 
-  drop_na(x1, x3)
+  drop_na(x1, x3, x8) %>% 
+  select(-x5, -x9, -x10, -cups_diverted, -x12) %>% 
+  filter(grepl('Total 2019', x1))%>% 
+  rename("month" = x1, "kg_cafe_grocery" = food_waste_tracker_2018, "kg_compost_grocery" = x3, "kg_staff_grocery" = x4, "kg_harvest_cafe" = x6, "kg_compost_cafe" = x7, "kg_staff_cafe" = x8)
+  
+#ok, I think that we need to add the grocery compost and the cafe compost together for a total compost. Then we can add the other kgs as diverted food waste and multiply by CEDA's general emission factor or calculate our own.
+
+```
+
+Let's start by summing the compost fatcors and then hopefully multiply by the compost emission factor
+
+```{r}
+total_waste_2019$compost_total_2019 <- total_waste_2019$kg_compost_grocery + total_waste_2019$kg_compost_cafe 
   
   
 ```
 
+Add all other kgs 

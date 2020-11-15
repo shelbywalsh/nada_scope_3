@@ -42,12 +42,6 @@ discount_totals <- item_discounts_2019 %>%
             cost = sum(amount))
 ```
 
-first category: dairy
-```{r}
-dairy_product_category <- discount_totals %>% 
-  filter(grepl('milk|Milk|Cream|cream', item))
-```
-
 (1) Egg Production
 ```{r}
 eggs_category_1 <- discount_totals %>% 
@@ -269,10 +263,24 @@ syrup_category_13   <- syrup_category_13 %>%
 
 ```
 
-
-(17) Oilseed farming
+(15)Fluid Milk and butter manufacturing
 ```{r}
-oilseed_category_17 <- discount_totals %>% 
+dairy_category_15 <- discount_totals %>% 
+  filter(grepl('milk|Milk|Cream|cream|Yogurt|yogurt', item))
+
+#Sweet, 11 dairy products!! let's subract and keep pluggin'
+
+# Subtract those words from discount_totals
+discount_totals <- discount_totals[!grepl('milk|Milk|Cream|cream|Yogurt|yogurt', discount_totals$item),]
+
+# Product Category Code
+dairy_category_15   <- dairy_category_15 %>%
+  add_column(prod_cat = 15)
+```
+
+(16) Oilseed farming
+```{r}
+oilseed_category_16 <- discount_totals %>% 
  filter(grepl('Soy|Tofu', item))
 
 #we got 3 woot woot
@@ -281,6 +289,22 @@ oilseed_category_17 <- discount_totals %>%
 discount_totals <- discount_totals[!grepl('Soy|Tofu', discount_totals$item),]
 
 # Product Category Code
-oilseed_category_17   <- oilseed_category_17 %>%
-  add_column(prod_cat = 17)
+oilseed_category_16   <- oilseed_category_16 %>%
+  add_column(prod_cat = 16)
 ```
+
+(27) Vegetable and melon farming
+```{r}
+vegetable_category_27 <- discount_totals %>% 
+  filter(grepl('Squash|Beet|Beets,|Bell Pepper,|Bok Choy|Broccoli,|Brussel Sprouts,|Cabbage,|Carrots,|Celery,|Cilantro|Chard,|Cucumber,|Garlic,|Ginger|Kale|Leeks|Lettuce|Mushroom|Mushrooms|Onion|Parsley|Spinach|Zuchinni', item))
+
+#sweet non potatoes! we've made some impact! But the US and CEDA think potatoes are not veggies.... which I have some objection to!
+
+# Subtract those words from discount_totals
+discount_totals <- discount_totals[!grepl('Squash|Beet|Beets,|Bell Pepper,|Bok Choy|Broccoli,|Brussel Sprouts,|Cabbage,|Carrots,|Celery,|Cilantro|Chard,|Cucumber,|Garlic,|Ginger|Kale|Leeks|Lettuce|Mushroom|Mushrooms|Onion|Parsley|Spinach|Zuchinni', discount_totals$item),]
+
+# Product Category Code
+vegetable_category_27   <- vegetable_category_27 %>%
+  add_column(prod_cat = 27)
+```
+
