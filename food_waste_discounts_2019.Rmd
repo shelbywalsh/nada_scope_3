@@ -278,33 +278,260 @@ dairy_category_15   <- dairy_category_15 %>%
   add_column(prod_cat = 15)
 ```
 
-(16) Oilseed farming
+(16)Soybean and other oilseed processing
 ```{r}
 oilseed_category_16 <- discount_totals %>% 
- filter(grepl('Soy|Tofu', item))
+ filter(grepl('Oil|Tofu|Tempeh|Tempea|Soy Protein|Pea Protein|Tahini', item))
 
 #we got 3 woot woot
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Soy|Tofu', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Oil|Tofu|Tempeh|Tempea|Soy Protein|Pea Protein|Tahini', discount_totals$item),]
 
 # Product Category Code
 oilseed_category_16   <- oilseed_category_16 %>%
   add_column(prod_cat = 16)
 ```
 
+(17) Oilseed farming
+```{r}
+oilseed_df_17 <- discount_totals %>% 
+ filter(grepl('Lentil|Peas|Soybeans|Bean|, Raw|Cashews, Whole|Flax Seeds|Sunflower Seeds', item))
+
+discount_totals <- discount_totals[!grepl('Lentil|Peas|Soybeans|Bean|, Raw|Cashews, Whole|Flax Seeds|Sunflower Seeds', discount_totals$item),]
+
+# Product Category Code
+oilseed_df_17   <- oilseed_df_17 %>%
+  add_column(prod_cat = 17)
+```
+
+(18) Snack food manufacturing
+```{r}
+snack_df_18 <- discount_totals %>% 
+  filter(grepl('Cashew|Almond|Peanut|Butter Cup|Pistachio|Sesame|Trail|Hummus|Homous|Dip|Tapenade|Chips|Sticks|Twists|Granola|Muesli|MUNCHeez', item))
+
+discount_totals <- discount_totals[!grepl('Cashew|Almond|Peanut|Butter Cup|Pistachio|Sesame|Trail|Hummus|Homous|Dip|Tapenade|Chips|Sticks|Twists|Granola|Muesli|MUNCHeez', discount_totals$item),]
+
+# Product Category Code
+snack_df_18   <- snack_df_18 %>%
+  add_column(prod_cat = 18)
+```
+
+(19) Grain farming
+```{r}
+grains_df_19 <- discount_totals %>% 
+ filter(grepl('Rice|Wheat|Quinoa|Barley|Oats|Oat Bran|Amaranth|Buckwheat|Farro|Millet|Popcorn|Psyllium', item))
+
+discount_totals <- discount_totals[!grepl('Rice|Wheat|Quinoa|Barley|Oats|Oat Bran|Amaranth|Buckwheat|Farro|Millet|Popcorn|Psyllium', discount_totals$item),]
+
+# Product Category Code
+grains_df_19   <- grains_df_19 %>%
+  add_column(prod_cat = 19)
+
+```
+
+(20) Fishing
+```{r}
+fish_df_20 <- discount_totals %>% 
+ filter(grepl('Skipper', item))
+
+discount_totals <- discount_totals[!grepl('Skipper', discount_totals$item),]
+
+# Product Category Code
+fish_df_20   <- fish_df_20 %>%
+  add_column(prod_cat = 20)
+```
+
+(21) Seasonings and dressings
+```{r}
+seasoning_df_21 <- discount_totals %>% 
+ filter(grepl('Gathering Place|Sauce|naise|Vinegar|Mustard|Miso|Tamari|Bay Leaf|Beet Root|Garlic Powder|Onion Powder|Ginger Powder|Garam Masala|Salt|Pesto|Chili |Italian Seasoning|Granules|Paprika Powder|Vanilla Extract', item))
+
+discount_totals <- discount_totals[!grepl('Gathering Place|Sauce|naise|Vinegar|Mustard|Miso|Tamari|Bay Leaf|Beet Root|Garlic Powder|Onion Powder|Ginger Powder|Garam Masala|Salt|Pesto|Chili |Italian Seasoning|Granules|Paprika Powder|Vanilla Extract', discount_totals$item),]
+
+# Product Category Code
+seasoning_df_21   <- seasoning_df_21 %>%
+  add_column(prod_cat = 21)
+```
+
+(22) Breweries
+```{r}
+brewery_df_22 <- discount_totals %>% 
+  filter(grepl('Kombucha|Dickie|Kefir', item))
+
+discount_totals <- discount_totals[!grepl('Kombucha|Dickie|Kefir', discount_totals$item),]
+
+# Product Category Code
+brewery_df_22   <- brewery_df_22 %>%
+  add_column(prod_cat = 22)
+```
+
+(23) Greenhouse, nursery, and floriculture production
+```{r}
+floriculture_df_23 <- discount_totals %>%
+  filter(grepl('Flower|flowers', item))
+
+discount_totals <- discount_totals[!grepl('Flower|flowers', discount_totals$item),]
+
+# Product Category Code
+floriculture_df_23   <- floriculture_df_23 %>%
+  add_column(prod_cat = 23)
+```
+
+(24) Cleaning compounds
+```{r}
+cleaning_df_24 <- discount_totals %>%
+  filter(grepl('Castile|Cleaner|Dish|Liquid|Toothpaste|Crush and Brush|Laundry Soda|Brightener|Borax|Bleach|Cleaning Powder', item))
+
+discount_totals <- discount_totals[!grepl('Castile|Cleaner|Dish|Liquid|Toothpaste|Crush and Brush|Laundry Soda|Brightener|Borax|Bleach|Cleaning Powder', discount_totals$item),]
+
+# Product Category Code
+cleaning_df_24    <- cleaning_df_24  %>%
+  add_column(prod_cat = 24)
+```
+
+(25) Toilet preparation manufacturing
+```{r}
+beauty_df_25  <- discount_totals %>%
+  filter(grepl('Balm|Lotion|Gel|Sanitizer|Soap|Shampoo|Conditioner|Deodorant|Detox|Cleansing|3-in-1 Bar|Sunscreen|Epsom|Magnesium Chloride|Eucalyptus Steam|Cedar Tea Tree', item))
+
+discount_totals <- discount_totals[!grepl('Balm|Lotion|Gel|Sanitizer|Soap|Shampoo|Conditioner|Deodorant|Detox|Cleansing|3-in-1 Bar|Sunscreen|Epsom|Magnesium Chloride|Eucalyptus Steam|Cedar Tea Tree', discount_totals$item),]
+
+# Product Category Code
+beauty_df_25 <- beauty_df_25  %>%
+  add_column(prod_cat = 25)
+```
+
+(26) Fruit and tree nut farming
+```{r}
+fruit_df_26 <- discount_totals %>%
+  filter(grepl('Apple|Apricot|Orange,|Oranges|Nectarine|Lemons|Grapefruit,|Tangelo|Peach|Plum|Pummelo|Persimmon|Banana|Avocado|Mango|Medjool|Coconut|Lime|Pear|berr|Nuts|Hazelnut|Walnut', item)) 
+
+discount_totals <- discount_totals[!grepl('Apple|Apricot|Orange,|Oranges|Nectarine|Lemons|Grapefruit,|Tangelo|Peach|Plum|Pummelo|Persimmon|Banana|Avocado|Mango|Medjool|Coconut|Lime|Pear|berr|Nuts|Hazelnut|Walnut', discount_totals$item),]
+
+# Product Category Code
+fruit_df_26 <- fruit_df_26  %>%
+  add_column(prod_cat = 26)
+```
+
+
 (27) Vegetable and melon farming
 ```{r}
 vegetable_category_27 <- discount_totals %>% 
-  filter(grepl('Squash|Beet|Beets,|Bell Pepper,|Bok Choy|Broccoli,|Brussel Sprouts,|Cabbage,|Carrots,|Celery,|Cilantro|Chard,|Cucumber,|Garlic,|Ginger|Kale|Leeks|Lettuce|Mushroom|Mushrooms|Onion|Parsley|Spinach|Zuchinni', item))
+  filter(grepl('Broccoli|Bok|Brussel|Basil|Beet|Cabbage|Carrot|Corn|Celery|Cilantro|Cucumber|Dill|Kale|Eggplant|Garlic|Kohlrabi|Leek|Lettuce|Greens|Ginger|sqaush|Squash|Potato|Pepper|Tomato|Mushroom|Mint|Melon|melon|Cantaloupe|Honeydew|Onion|Parsley|Parsnip|Pumpkin|Rad|Rhubarb|Romaine|Rosemary|Rutabaga|Sage|Shallot|Spinach|Thyme|Turnip|Turmeric Root|Yams|Zucchini|Seeds', item))
 
 #sweet non potatoes! we've made some impact! But the US and CEDA think potatoes are not veggies.... which I have some objection to!
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Squash|Beet|Beets,|Bell Pepper,|Bok Choy|Broccoli,|Brussel Sprouts,|Cabbage,|Carrots,|Celery,|Cilantro|Chard,|Cucumber,|Garlic,|Ginger|Kale|Leeks|Lettuce|Mushroom|Mushrooms|Onion|Parsley|Spinach|Zuchinni', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Broccoli|Bok|Brussel|Basil|Beet|Cabbage|Carrot|Corn|Celery|Cilantro|Cucumber|Dill|Kale|Eggplant|Garlic|Kohlrabi|Leek|Lettuce|Greens|Ginger|sqaush|Squash|Potato|Pepper|Tomato|Mushroom|Mint|Melon|melon|Cantaloupe|Honeydew|Onion|Parsley|Parsnip|Pumpkin|Rad|Rhubarb|Romaine|Rosemary|Rutabaga|Sage|Shallot|Spinach|Thyme|Turnip|Turmeric Root|Yams|Zucchini|Seeds', discount_totals$item),]
 
 # Product Category Code
 vegetable_category_27   <- vegetable_category_27 %>%
   add_column(prod_cat = 27)
+```
+
+(28) Apparel manufacturing
+```{r}
+apparel_df_28 <- discount_totals %>%
+  filter(grepl('Lunapads|Hair Ties', item))
+
+discount_totals <- discount_totals[!grepl('Lunapads|Hair Ties', discount_totals$item),]
+
+# Product Category Code
+apparel_df_28   <- apparel_df_28 %>%
+  add_column(prod_cat = 28)
+```
+
+(29) Glass Products
+```{r}
+
+#double check
+
+glass_df_29 <- discount_totals %>%
+  filter(grepl('Glass |Growler|Floss, Container|Deposit', item))
+
+discount_totals <- discount_totals[!grepl('Glass |Growler|Floss, Container|Deposit', discount_totals$item),]
+
+# Product Category Code
+glass_df_29   <- glass_df_29 %>%
+  add_column(prod_cat = 29)
+```
+
+(30) Cutlery and handtool manufacturing
+```{r}
+cutlery_df_30 <- discount_totals %>%
+  filter(grepl('Cutlery|Spork|Straw', item))
+
+discount_totals <- discount_totals[!grepl('Cutlery|Spork|Straw', discount_totals$item),]
+
+# Product Category Code
+cutlery_df_30   <- cutlery_df_30 %>%
+  add_column(prod_cat = 30)
+```
+
+(31) Sanitary paper product manufacturing
+```{r}
+paper_df_31 <- discount_totals %>%
+  filter(grepl('Toilet Paper', item))
+
+discount_totals <- discount_totals[!grepl('Toilet Paper', discount_totals$item),]
+
+# Product Category Code
+paper_df_31   <- paper_df_31 %>%
+  add_column(prod_cat = 31)
+```
+
+(32) Metal can, box, and other metal container (light gauge) manufacturing
+```{r}
+metal_df_32 <- discount_totals %>%
+  filter(grepl('Onyx', item))
+
+discount_totals <- discount_totals[!grepl('Onyx', discount_totals$item),]
+
+# Product Category Code
+metal_df_32   <- metal_df_32 %>%
+  add_column(prod_cat = 32)
+```
+
+(33) Fiber, yarn, and thread mills
+```{r}
+thread_df_33 <- discount_totals %>%
+  filter(grepl('Floss, Refill|Dryer Ball', item))
+
+discount_totals <- discount_totals[!grepl('Floss, Refill|Dryer Ball', discount_totals$item),]
+
+# Product Category Code
+thread_df_33   <- thread_df_33 %>%
+  add_column(prod_cat = 33)
+```
+
+(34) Animal production, except cattle and poultry and eggs
+```{r}
+honey_df_34 <- discount_totals %>%
+  filter(grepl('Honey', item))
+
+discount_totals <- discount_totals[!grepl('Honey', discount_totals$item),]
+
+# Product Category Code
+honey_df_34   <- honey_df_34 %>%
+  add_column(prod_cat = 34)
+```
+
+(35) Other food items (except artificial sweeteners)
+```{r}
+otherfood_df_35 <- discount_totals %>%
+  filter(grepl('Carob|Plant|Citric|Powder|Soda|Arame|Maple|Yeast|Salsa|TMRW|Wine|Seaweed', item))
+
+discount_totals <- discount_totals[!grepl('Carob|Plant|Citric|Powder|Soda|Arame|Maple|Yeast|Salsa|TMRW|Wine|Seaweed', discount_totals$item),]
+
+# Product Category Code
+otherfood_df_35   <- otherfood_df_35 %>%
+  add_column(prod_cat = 35)
+```
+
+(36) Other non-food items
+```{r}
+otherall_df_36 <- discount_totals %>%
+  add_column(prod_cat = 36)
 ```
 
