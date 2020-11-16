@@ -153,12 +153,12 @@ flours_category_5 <- flours_category_5 %>%
 ```{r}
 # Basically just what they get from Two Rivers Speciality Meats
 breads_category_6 <- all_products %>% 
- filter(grepl('Bread|Croissant|Crouton|Loaf|Rye|Multigrain|Hamburger|buns|French Rolls|Yellow Basket|Pie Slice|Pie Filling', item))
+ filter(grepl('Bread|Croissant|Crouton|Loaf|Rye|Multigrain|Hamburger|buns|French Rolls|Yellow Basket|Pie Slice|Pie Filling|Sinnabun', item))
 # Hamburger retrieves "hamburger bun" without messing with anything sold by the 'bunch'
 # Note that the next category includes cookies and crackers. This one is just breads.
 
 # Subtract those words from all_products
-all_products <- all_products[!grepl('Bread|Croissant|Crouton|Loaf|Rye|Multigrain|Hamburger|buns|French Rolls|Yellow Basket|Pie Slice|Pie Filling', all_products$item),]
+all_products <- all_products[!grepl('Bread|Croissant|Crouton|Loaf|Rye|Multigrain|Hamburger|buns|French Rolls|Yellow Basket|Pie Slice|Pie Filling|Sinnabun', all_products$item),]
 
 # Product Category Code
 breads_category_6 <- breads_category_6  %>%
@@ -197,10 +197,10 @@ sugar_category_8  <- sugar_category_8 %>%
 (9) Coffee and tea manufacturing
 ```{r}
 coffee_category_9 <- all_products %>% 
- filter(grepl('Coffee|Tea,|Tea Co.|Tea Blend|Chai|Latte Mix|Matcha', item))
+ filter(grepl('Coffee|Tea,|Tea Co.|Tea Blend|Chai|Latte Mix|Matcha|Sultana', item))
 
 # Subtract those words from all_products
-all_products <- all_products[!grepl('Coffee|Tea,|Chai|Latte Mix', all_products$item),]
+all_products <- all_products[!grepl('Coffee|Tea,|Tea Co.|Tea Blend|Chai|Latte Mix|Matcha|Sultana', all_products$item),]
 
 # Product Category Code
 coffee_category_9   <- coffee_category_9 %>%
