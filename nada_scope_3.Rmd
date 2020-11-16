@@ -362,11 +362,11 @@ all_products <- all_products[!grepl('Flower|flowers', all_products$item),]
 (24) Cleaning compounds
 ```{r}
 cleaning_category_24 <- all_products %>%
-  filter(grepl('Castile|Cleaner|Dish|Toothpaste|Crush and Brush|Laundry Soda|Brightener|Borax|Bleach', item)) %>% 
+  filter(grepl('Castile|Cleaner|Dish|Toothpaste|Crush and Brush|Laundry Soda|Brightener|Borax|Bleach|Laundry', item)) %>% 
   add_column(prod_cat = 24)
 
 # Subtract those words from all_products
-all_products <- all_products[!grepl('Castile|Cleaner|Dish|Toothpaste|Crush and Brush|Laundry Soda|Brightener|Borax|Bleach', all_products$item),]
+all_products <- all_products[!grepl('Castile|Cleaner|Dish|Toothpaste|Crush and Brush|Laundry Soda|Brightener|Borax|Bleach|Laundry', all_products$item),]
 ```
 
 (25) Toilet preparation manufacturing
