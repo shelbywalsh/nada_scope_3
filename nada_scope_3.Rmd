@@ -389,6 +389,22 @@ fruit_category_23 <- all_products %>%
 all_products <- all_products[!grepl('Apple|Apricots|Orange,|Oranges|Nectarine|Lemons|Grapefruit,|Tangelo|Peach|Plum|Pummelo|Banana|Avocado|Mango|Medjool|Coconut|Lime|Pear|berr|Nuts|Hazelnut|Walnut', all_products$item),]
 
 ```
+
+(30) Metal kitchen cookware
+```{r}
+metal_category_30 <- all_products %>%
+  filter(grepl('Cutlery|Straw', item)) %>% 
+  add_column(prod_cat = 30)
+
+# Note: Glass straws are included here, I couldn't figure out how to subtract them. (Mike)
+
+# Subtract those words from all_products
+
+all_products <- all_products[!grepl('Cutlery|Straw', all_products$item),]
+```
+
+
+
 (14) Tree nut Cocominos
 
 (16) Oilseed farming
