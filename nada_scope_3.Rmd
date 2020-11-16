@@ -393,13 +393,12 @@ all_products <- all_products[!grepl('Apple|Apricots|Orange,|Oranges|Nectarine|Le
 (30) Metal kitchen cookware
 ```{r}
 metal_category_30 <- all_products %>%
-  filter(grepl('Cutlery|Straw', item)) %>% 
+  filter(grepl('Cutlery|Straw',item)) %>% 
+  filter(!grepl('Glass', item)) %>% 
   add_column(prod_cat = 30)
 
-# Note: Glass straws are included here, I couldn't figure out how to subtract them. (Mike)
-
 # Subtract those words from all_products
-
+# Note: Glass straws are also subtracted... I'm not sure how to resolve that yet (Mike)
 all_products <- all_products[!grepl('Cutlery|Straw', all_products$item),]
 ```
 
@@ -418,4 +417,3 @@ Peanut
 
 
 Hemp 
-
