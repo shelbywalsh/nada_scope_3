@@ -60,12 +60,12 @@ eggs_category_1 <- eggs_category_1 %>%
 (2) Cheese manufacturing
 ```{r}
 cheese_category_2 <- discount_totals %>% 
- filter(grepl('Cheese,|Charmisan|Cream Cheese|Feta', item))
+ filter(grepl('Cheese,|Cheeze|Cream Cheese|Feta|Shreds|Vegan Cheese|Charmisan|Cashew Ricotta|Pumpkin Cheese|Blue Heron', item))
 
 #Again, no cheese in discounted items, but including code for future calculations
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Cheese,|Charmisan|Cream Cheese|Feta', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Cheese,|Cheeze|Cream Cheese|Feta|Shreds|Vegan Cheese|Charmisan|Cashew Ricotta|Pumpkin Cheese|Blue Heron', discount_totals$item),]
 
 # Product Category Code
 cheese_category_2 <- cheese_category_2 %>%
@@ -75,12 +75,12 @@ cheese_category_2 <- cheese_category_2 %>%
 (3) Meat (except poultry)
 ```{r}
 meats_category_3 <- discount_totals %>% 
- filter(grepl('Pepperoni|Bratwurst|Sausage|Chorizo|Jerky', item))
+ filter(grepl('Two Rivers Meat|Pepperoni|Bratwurst|Sausage|Chorizo|Jerky', item))
 
 #Again another empty category, code for future use. Also the deli category isn't really used for deli products, but more miscellaneous 50% discount items
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Pepperoni|Bratwurst|Sausage|Chorizo|Jerky', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Two Rivers Meat|Pepperoni|Bratwurst|Sausage|Chorizo|Jerky', discount_totals$item),]
 
 # Product Category Code
 meats_category_3 <- meats_category_3  %>%
@@ -107,12 +107,12 @@ scrap_category_13  <- scrap_category_13   %>%
 (4) Fabric products
 ```{r}
 fabrics_category_4 <- discount_totals %>% 
- filter(grepl('Fabric|Filter|Bag |Bag,|Wrap|Dryer|cloth|Cloth|Pads|Jersey,', item))
+ filter(grepl('Fabric|Filter|Bags|Bag |Bag,|Rag|Wrap|cloth|Cloth|Pads|Jersey,|Coozie', item))
 
 #another dud category. code input for constancy sake
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Fabric|Filter|Bag |Bag,|Wrap|Cloth|cloth|Pads,', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Fabric|Filter|Bags|Bag |Bag,|Rag|Wrap|cloth|Cloth|Pads|Jersey,|Coozie', discount_totals$item),]
 
 # Product Category Code
 fabrics_category_4 <- fabrics_category_4  %>%
@@ -122,12 +122,12 @@ fabrics_category_4 <- fabrics_category_4  %>%
 (5) Flours & flour mixes
 ```{r}
 flours_category_5 <- discount_totals %>% 
- filter(grepl('Flour,|Flour |Pancake', item))
+ filter(grepl('Flour,|Flour |Pancake|Arrowroot|Corn Meal|Corn Starch|Tapioca Starch', item))
 
 #again another goose egg category. My gut tells me that a majority of discounted products are milks, veggies, fruits, breads and condients. must continue forward with the code just incase
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Flour,|Flour |Pancake', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Flour,|Flour |Pancake|Arrowroot|Corn Meal|Corn Starch|Tapioca Starch', discount_totals$item),]
 
 # Product Category Code
 flours_category_5 <- flours_category_5 %>%
@@ -139,12 +139,12 @@ flours_category_5 <- flours_category_5 %>%
 ```{r}
 #fingers crossed this actually picks up some of the 157 line items left
 breads_category_6 <- discount_totals %>% 
- filter(grepl('Bread|Hamburger|Crouton|Loaf', item))
+ filter(grepl('Bread|Hamburger|Cheesebuns|Ciabatta|Crouton|Loaf|muffin', item))
 
 #sweet beans! 8 more items accounted for! Now to subract them so there are les than 150 line items to go
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Bread|Hamburger|Crouton|Loaf', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Bread|Hamburger|Cheesebuns|Ciabatta|Crouton|Loaf|muffin', discount_totals$item),]
 
 # Product Category Code
 breads_category_6 <- breads_category_6  %>%
@@ -156,12 +156,12 @@ breads_category_6 <- breads_category_6  %>%
 (7) Cookie, cracker, pasta, and tortilla
 ```{r}
 cookie_category_7 <- discount_totals %>% 
- filter(grepl('Cookie|Macaron|Sinnabon|Muffin|Dough|Bakeshop|Cricket|Powerball|Crisp|Cracker|Tortilla|Pasta|Noodle|Rotini|Penne|Creste|Fettuccine', item))
+ filter(grepl('Cookie|Macaron|Sinna|Nanaimo|Muffin|Brownie|Dough|Bakeshop|Cricket|Powerball|Crisp|Cracker|Tortilla|Pasta|Noodle|Rotini|Penne|Creste|Fusilli|Spaghetti, K|Spaghetti, D|Fettuccine|Lasagna|Ramen|Soba|Couscous', item))
 
 #awesome 2 more down! lets get to subracting
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Cookie|Macaron|Sinnabon|Muffin|Dough|Bakeshop|Cricket|Powerball|Crisp|Cracker|Tortilla|Pasta|Noodle|Rotini|Penne|Creste|Fettuccine', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Cookie|Macaron|Sinna|Nanaimo|Muffin|Brownie|Dough|Bakeshop|Cricket|Powerball|Crisp|Cracker|Tortilla|Pasta|Noodle|Rotini|Penne|Creste|Fusilli|Spaghetti, K|Spaghetti, D|Fettuccine|Lasagna|Ramen|Soba|Couscous', discount_totals$item),]
 
 # Product Category Code
 cookie_category_7  <- cookie_category_7 %>%
@@ -171,12 +171,12 @@ cookie_category_7  <- cookie_category_7 %>%
 (8) Sugar and confectionery product manufacturing
 ```{r}
 sugar_category_8 <- discount_totals %>% 
- filter(grepl('Sugar,', item))
+ filter(grepl('Molasses|Sugar,|Cacao|Cocoa|Chocolate,|Chocolate Chips|Hot Chocolate|Candycane|Truffles|Jelly Bean|Caramel|Delish Fish|Rings, Watermelon|Yogurt Raisins|Bark|Bears|Licorice|Worms', item))
 
 #another empty category: insert extra code here
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Sugar,', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Molasses|Sugar,|Cacao|Cocoa|Chocolate,|Chocolate Chips|Hot Chocolate|Candycane|Truffles|Jelly Bean|Caramel|Delish Fish|Rings, Watermelon|Yogurt Raisins|Bark|Bears|Licorice|Worms', discount_totals$item),]
 
 # Product Category Code
 sugar_category_8  <- sugar_category_8 %>%
@@ -186,12 +186,12 @@ sugar_category_8  <- sugar_category_8 %>%
 (9) Coffee and tea manufacturing
 ```{r}
 coffee_category_9 <- discount_totals %>% 
- filter(grepl('Coffee|Tea,', item))
+ filter(grepl('Coffee|Tea,|Tea Co.|Amoda Tea|Tea Blend|Chai|Latte Mix|East Van Roasters', item))
 
 #EMPTY! ugggggggggg
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Coffee|Tea,', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Coffee|Tea,|Tea Co.|Amoda Tea|Tea Blend|Chai|Latte Mix|East Van Roasters', discount_totals$item),]
 
 # Product Category Code
 coffee_category_9   <- coffee_category_9 %>%
@@ -201,45 +201,45 @@ coffee_category_9   <- coffee_category_9 %>%
 (10) Fruit and vegetable canning, pickling, and drying
 ```{r}
 dried_category_10 <- discount_totals %>% 
- filter(grepl('Dried|Raisins|Goji Berries,|Apple Rings|Figs|Pickle|Kimchi|Sauerkraut|Olives|Ginger Carrots|Mostarda', item))
+ filter(grepl('Dried|Raisins|Goji Berries,|Apple Rings|Figs|Pickle|Sauerkraut|Kimchi|Stemchi|Olives|Ginger Carrots|Mostarda|Bean Flakes|Veggie Broth Powder|Turkish Apricot', item))
 
 #another 3 down! woot I can't wait for product category 26
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Dried|Raisins|Goji Berries,|Apple Rings|Figs|Pickle|Kimchi|Olives|Ginger Carrots|Mostarda', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Dried|Raisins|Goji Berries,|Apple Rings|Figs|Pickle|Sauerkraut|Kimchi|Stemchi|Olives|Ginger Carrots|Mostarda|Bean Flakes|Veggie Broth Powder|Turkish Apricot', discount_totals$item),]
 
 # Product Category Code
 dried_category_10   <- dried_category_10 %>%
   add_column(prod_cat = 10)
 ```
 
-(11) Fats and oils refining and blending
+(11)  Ice Cream and frozen dessert manufacturing
 ```{r}
-oils_category_11 <- discount_totals %>% 
- filter(grepl('Oil', item))
+icecream_category_11 <- discount_totals %>% 
+ filter(grepl('Ice Cream|Earnest', item))
 
 #zero the not so hero
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Oil', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Ice Cream|Earnest', discount_totals$item),]
 
 # Product Category Code
-oils_category_11   <- oils_category_11 %>%
+icecream_category_11   <- icecream_category_11 %>%
   add_column(prod_cat = 11)
 ```
 
-(12) Ice cream and frozen dessert manufacturing
+(12) Frozen Food
 ```{r}
-icecream_category_12 <- discount_totals %>% 
- filter(grepl('Ice Cream', item))
+frozen_category_12 <- discount_totals %>% 
+ filter(grepl('Frozen|Pierogi', item))
 
 #another zero.... starting to regret picking this task lol
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Ice Cream', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Frozen|Pierogi', discount_totals$item),]
 
 # Product Category Code
-icecream_category_12   <- icecream_category_12 %>%
+frozen_category_12   <- frozen_category_12 %>%
   add_column(prod_cat = 12)
 ```
 
@@ -260,18 +260,25 @@ syrup_category_13   <- syrup_category_13 %>%
 
 (14) Dry, condensed, and evaporated dairy product manufacturing
 ```{r}
+dairy_df_14 <-discount_totals %>% 
+ filter(grepl('Milk Powder', item))
 
+discount_totals <- discount_totals[!grepl('Milk Powder', discount_totals$item),]
+
+# Product Category Code
+dairy_df_14   <- dairy_df_14 %>%
+  add_column(prod_cat = 14)
 ```
 
 (15)Fluid Milk and butter manufacturing
 ```{r}
 dairy_category_15 <- discount_totals %>% 
-  filter(grepl('milk|Milk|Cream|cream|Yogurt|yogurt', item))
+  filter(grepl('Milk|Mylk|Butter, Salted|Butter, Vegan|Cultured Butter|Cream|Yogurt|Smoothie', item))
 
 #Sweet, 11 dairy products!! let's subract and keep pluggin'
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('milk|Milk|Cream|cream|Yogurt|yogurt', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Milk|Mylk|Butter, Salted|Butter, Vegan|Cultured Butter|Cream|Yogurt|Smoothie', discount_totals$item),]
 
 # Product Category Code
 dairy_category_15   <- dairy_category_15 %>%
@@ -281,12 +288,12 @@ dairy_category_15   <- dairy_category_15 %>%
 (16)Soybean and other oilseed processing
 ```{r}
 oilseed_category_16 <- discount_totals %>% 
- filter(grepl('Oil|Tofu|Tempeh|Tempea|Soy Protein|Pea Protein|Tahini', item))
+ filter(grepl('Oil|Tofu|Tempeh|Tempea|Soy Protein|Pea Protein|Tahini|Sunflower Butter', item))
 
 #we got 3 woot woot
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Oil|Tofu|Tempeh|Tempea|Soy Protein|Pea Protein|Tahini', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Oil|Tofu|Tempeh|Tempea|Soy Protein|Pea Protein|Tahini|Sunflower Butter', discount_totals$item),]
 
 # Product Category Code
 oilseed_category_16   <- oilseed_category_16 %>%
@@ -345,9 +352,9 @@ fish_df_20   <- fish_df_20 %>%
 (21) Seasonings and dressings
 ```{r}
 seasoning_df_21 <- discount_totals %>% 
- filter(grepl('Gathering Place|Sauce|naise|Vinegar|Mustard|Miso|Tamari|Bay Leaf|Beet Root|Garlic Powder|Onion Powder|Ginger Powder|Garam Masala|Salt|Pesto|Chili |Italian Seasoning|Granules|Paprika Powder|Vanilla Extract', item))
+ filter(grepl('Gathering Place|Sauce|naise|Vinegar|Mustard|Miso|Tamari|Bay Leaf|Beet Root|Garlic Powder|Onion Powder|Ginger Powder|Garam Masala|Salt|Pesto|Chili |Italian Seasoning|Granules|Paprika Powder|Vanilla Extract|Dressing|Ketchup|Burst', item))
 
-discount_totals <- discount_totals[!grepl('Gathering Place|Sauce|naise|Vinegar|Mustard|Miso|Tamari|Bay Leaf|Beet Root|Garlic Powder|Onion Powder|Ginger Powder|Garam Masala|Salt|Pesto|Chili |Italian Seasoning|Granules|Paprika Powder|Vanilla Extract', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Gathering Place|Sauce|naise|Vinegar|Mustard|Miso|Tamari|Bay Leaf|Beet Root|Garlic Powder|Onion Powder|Ginger Powder|Garam Masala|Salt|Pesto|Chili |Italian Seasoning|Granules|Paprika Powder|Vanilla Extract|Dressing|Ketchup|Burst', discount_totals$item),]
 
 # Product Category Code
 seasoning_df_21   <- seasoning_df_21 %>%
@@ -418,12 +425,12 @@ fruit_df_26 <- fruit_df_26  %>%
 (27) Vegetable and melon farming
 ```{r}
 vegetable_category_27 <- discount_totals %>% 
-  filter(grepl('Broccoli|Bok|Brussel|Basil|Beet|Cabbage|Carrot|Corn|Celery|Cilantro|Cucumber|Dill|Kale|Eggplant|Garlic|Kohlrabi|Leek|Lettuce|Greens|Ginger|sqaush|Squash|Potato|Pepper|Tomato|Mushroom|Mint|Melon|melon|Cantaloupe|Honeydew|Onion|Parsley|Parsnip|Pumpkin|Rad|Rhubarb|Romaine|Rosemary|Rutabaga|Sage|Shallot|Spinach|Thyme|Turnip|Turmeric Root|Yams|Zucchini|Seeds', item))
+  filter(grepl('Broccoli|Bok|Brussel|Basil|Beet|Cabbage|Carrot|Corn|Celery|Cilantro|Chard|Cucumber|Dill|Kale|Eggplant|Garlic|Kohlrabi|Leek|Lettuce|Greens|Ginger|sqaush|Squash|Potato|Pepper|Tomato|Mushroom|Mint|Melon|melon|Cantaloupe|Honeydew|Onion|Parsley|Parsnip|Pumpkin|Rad|Rhubarb|Romaine|Rosemary|Rutabaga|Sage|Shallot|Spinach|Thyme|Turnip|Turmeric Root|Yams|Zucchini|Seeds', item))
 
 #sweet non potatoes! we've made some impact! But the US and CEDA think potatoes are not veggies.... which I have some objection to!
 
 # Subtract those words from discount_totals
-discount_totals <- discount_totals[!grepl('Broccoli|Bok|Brussel|Basil|Beet|Cabbage|Carrot|Corn|Celery|Cilantro|Cucumber|Dill|Kale|Eggplant|Garlic|Kohlrabi|Leek|Lettuce|Greens|Ginger|sqaush|Squash|Potato|Pepper|Tomato|Mushroom|Mint|Melon|melon|Cantaloupe|Honeydew|Onion|Parsley|Parsnip|Pumpkin|Rad|Rhubarb|Romaine|Rosemary|Rutabaga|Sage|Shallot|Spinach|Thyme|Turnip|Turmeric Root|Yams|Zucchini|Seeds', discount_totals$item),]
+discount_totals <- discount_totals[!grepl('Broccoli|Bok|Brussel|Basil|Beet|Cabbage|Carrot|Corn|Celery|Cilantro|Chard|Cucumber|Dill|Kale|Eggplant|Garlic|Kohlrabi|Leek|Lettuce|Greens|Ginger|sqaush|Squash|Potato|Pepper|Tomato|Mushroom|Mint|Melon|melon|Cantaloupe|Honeydew|Onion|Parsley|Parsnip|Pumpkin|Rad|Rhubarb|Romaine|Rosemary|Rutabaga|Sage|Shallot|Spinach|Thyme|Turnip|Turmeric Root|Yams|Zucchini|Seeds', discount_totals$item),]
 
 # Product Category Code
 vegetable_category_27   <- vegetable_category_27 %>%
@@ -533,5 +540,48 @@ otherfood_df_35   <- otherfood_df_35 %>%
 ```{r}
 otherall_df_36 <- discount_totals %>%
   add_column(prod_cat = 36)
+```
+
+All categories brought back together
+```{r}
+all_categories <- rbind(
+  eggs_category_1,
+  cheese_category_2,
+  meats_category_3,
+  fabrics_category_4,
+  flours_category_5,
+  breads_category_6,
+  cookie_category_7,
+  sugar_category_8,
+  coffee_category_9,
+  dried_category_10,
+  icecream_category_11,
+  frozen_category_12,
+  scrap_category_13,
+  syrup_category_13,
+  dairy_df_14,
+  dairy_category_15,
+  oilseed_category_16,
+  oilseed_df_17,
+  snack_df_18,
+  grains_df_19,
+  fish_df_20,
+  seasoning_df_21,
+  brewery_df_22,
+  floriculture_df_23,
+  cleaning_df_24,
+  beauty_df_25,
+  fruit_df_26,
+  vegetable_category_27,
+  apparel_df_28,
+  glass_df_29,
+  cutlery_df_30,
+  paper_df_31,
+  metal_df_32,
+  thread_df_33,
+  honey_df_34,
+  otherfood_df_35,
+  otherall_df_36
+)
 ```
 
